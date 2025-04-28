@@ -15,15 +15,15 @@ export default function DatasetsPage() {
         <div className="container flex justify-between items-center py-4">
           <h1 className="text-3xl font-bold">Discover Data Products Across Your Organization</h1>
           <Image
-            src="/images/uark-logo.png"
-            alt="University of Arkansas Logo"
+            src="/images/university_of_contoso_transparent.png"
+            alt="University of Contoso Logo"
             width={120}
             height={60}
             className="h-12 w-auto"
           />
         </div>
       </div>
-      <div className="bg-[#9e1b32] h-5 w-full"></div>
+      <div className="bg-contoso-orange h-5 w-full"></div>
 
       <div className="flex flex-1">
         <DatasetsSidebar />
@@ -42,7 +42,7 @@ export default function DatasetsPage() {
                 <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
               </div>
 
-              <Button className="bg-[#9e1b32] hover:bg-[#7a1522] text-white flex items-center gap-2">
+              <Button className="bg-contoso-orange hover:bg-contoso-orange/90 text-white flex items-center gap-2">
                 <Plus className="h-4 w-4" />
                 New Dataset
               </Button>
@@ -54,7 +54,7 @@ export default function DatasetsPage() {
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-2">
                   <svg
-                    className="h-5 w-5 text-[#9e1b32]"
+                    className="h-5 w-5 text-contoso-orange"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -69,7 +69,7 @@ export default function DatasetsPage() {
                   </svg>
                   <h2 className="text-xl font-bold">Available Datasets</h2>
                 </div>
-                <a href="#" className="text-sm text-[#9e1b32] hover:underline">
+                <a href="#" className="text-sm text-contoso-orange hover:underline">
                   See All
                 </a>
               </div>

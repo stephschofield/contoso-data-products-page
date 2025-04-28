@@ -111,7 +111,7 @@ export function ProductHeader({ productId }: ProductHeaderProps) {
 
       <div className="container px-4">
         <div className="relative -mt-24 bg-white rounded-lg shadow-md p-6 border border-gray-200">
-          <Link href="/discover" className="inline-flex items-center text-sm text-[#9e1b32] hover:underline mb-4">
+          <Link href="/discover" className="inline-flex items-center text-sm text-contoso-blue hover:underline mb-4">
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back to Data Products
           </Link>
@@ -142,7 +142,7 @@ export function ProductHeader({ productId }: ProductHeaderProps) {
           <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-1">
-                <Star className="h-5 w-5 text-yellow-500" />
+                <Star className="h-5 w-5 text-contoso-yellow" />
                 <span className="font-medium">{product.rating}</span>
               </div>
 
@@ -164,11 +164,11 @@ export function ProductHeader({ productId }: ProductHeaderProps) {
               </Button>
 
               {product.access === "restricted" ? (
-                <Button size="sm" className="bg-[#9e1b32] hover:bg-[#7a1522]" asChild>
+                <Button size="sm" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white" asChild>
                   <Link href={`/request-access/${product.id}`}>Request Access</Link>
                 </Button>
               ) : (
-                <Button size="sm" className="bg-[#9e1b32] hover:bg-[#7a1522]">
+                <Button size="sm" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white">
                   Access Now
                 </Button>
               )}

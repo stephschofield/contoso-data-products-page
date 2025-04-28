@@ -23,7 +23,9 @@ export function DatasetFilters() {
           <button
             key={filter.id}
             className={`px-3 py-1.5 text-sm rounded-md ${
-              activeFilter === filter.id ? "bg-[#9e1b32] text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              activeFilter === filter.id
+                ? "bg-contoso-orange text-white"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
             onClick={() => setActiveFilter(filter.id)}
           >

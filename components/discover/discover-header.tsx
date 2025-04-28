@@ -2,7 +2,7 @@ import { Search } from "lucide-react"
 
 export function DiscoverHeader() {
   return (
-    <div className="bg-[#9e1b32] text-white">
+    <div className="bg-contoso-blue text-white">
       <div className="container px-4 py-16 md:py-24">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Discover Data Products Across Your Organization</h1>

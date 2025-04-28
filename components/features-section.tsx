@@ -7,7 +7,7 @@ export function FeaturesSection() {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">Features</div>
+            <div className="inline-block rounded-lg bg-contoso-orange px-3 py-1 text-sm text-white">Features</div>
             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
               Everything You Need for Fabric Deployment
             </h2>
@@ -20,7 +20,7 @@ export function FeaturesSection() {
         <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <GitCompare className="h-6 w-6 text-primary" />
+              <GitCompare className="h-6 w-6 text-contoso-orange" />
               <CardTitle>Multiple IaC Options</CardTitle>
             </CardHeader>
             <CardContent>
@@ -31,7 +31,7 @@ export function FeaturesSection() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <Zap className="h-6 w-6 text-primary" />
+              <Zap className="h-6 w-6 text-contoso-orange" />
               <CardTitle>Fast Deployment</CardTitle>
             </CardHeader>
             <CardContent>
@@ -42,7 +42,7 @@ export function FeaturesSection() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <Shield className="h-6 w-6 text-primary" />
+              <Shield className="h-6 w-6 text-contoso-orange" />
               <CardTitle>Secure by Default</CardTitle>
             </CardHeader>
             <CardContent>
@@ -53,7 +53,7 @@ export function FeaturesSection() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <Cog className="h-6 w-6 text-primary" />
+              <Cog className="h-6 w-6 text-contoso-orange" />
               <CardTitle>Customizable</CardTitle>
             </CardHeader>
             <CardContent>
@@ -64,7 +64,7 @@ export function FeaturesSection() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <Code2 className="h-6 w-6 text-primary" />
+              <Code2 className="h-6 w-6 text-contoso-orange" />
               <CardTitle>Infrastructure as Code</CardTitle>
             </CardHeader>
             <CardContent>
@@ -75,7 +75,7 @@ export function FeaturesSection() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <Layers className="h-6 w-6 text-primary" />
+              <Layers className="h-6 w-6 text-contoso-orange" />
               <CardTitle>Multi-Environment</CardTitle>
             </CardHeader>
             <CardContent>

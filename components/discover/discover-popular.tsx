@@ -44,13 +44,15 @@ export function DiscoverPopular() {
           <Link
             href={`/discover/product/${product.id}`}
             key={product.id}
-            className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-[#9e1b32] hover:shadow-md transition-all group"
+            className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-contoso-blue hover:shadow-md transition-all group"
           >
             <div className="relative h-48">
               <Image src={product.image || "/placeholder.svg"} alt={product.title} fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                 <div className="p-4 text-white">
-                  <h3 className="font-bold text-lg group-hover:text-[#ffb4b4] transition-colors">{product.title}</h3>
+                  <h3 className="font-bold text-lg group-hover:text-contoso-blue/90 transition-colors">
+                    {product.title}
+                  </h3>
                   <p className="text-sm text-white/80">{product.department}</p>
                 </div>
               </div>
@@ -66,7 +68,7 @@ export function DiscoverPopular() {
                 </div>
 
                 <div className="flex items-center gap-1">
-                  <Star className="h-4 w-4 text-yellow-500" />
+                  <Star className="h-4 w-4 text-contoso-yellow" />
                   <span>{product.rating}</span>
                 </div>
 

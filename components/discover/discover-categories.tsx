@@ -61,10 +61,10 @@ export function DiscoverCategories() {
           <Link
             href={`/discover/category/${category.name.toLowerCase()}`}
             key={category.name}
-            className="bg-white rounded-lg p-4 border border-gray-200 hover:border-[#9e1b32] hover:shadow-md transition-all group"
+            className="bg-white rounded-lg p-4 border border-gray-200 hover:border-contoso-blue hover:shadow-md transition-all group"
           >
             <div className="flex items-center gap-3 mb-2">
-              <div className="text-[#9e1b32] group-hover:scale-110 transition-transform">{category.icon}</div>
+              <div className="text-contoso-blue group-hover:scale-110 transition-transform">{category.icon}</div>
               <h3 className="font-medium">{category.name}</h3>
             </div>
             <p className="text-sm text-gray-600 mb-2">{category.description}</p>

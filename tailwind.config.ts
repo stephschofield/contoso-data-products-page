@@ -20,7 +20,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-lato)", "Lato", "sans-serif"],
+        sans: ["var(--font-segoe)", "Segoe UI", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -55,6 +55,13 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        // Contoso brand colors
+        contoso: {
+          orange: "#F34F1C",
+          green: "#7FBC00",
+          yellow: "#FFBA01",
+          blue: "#01A6F0",
         },
       },
       borderRadius: {

@@ -26,19 +26,19 @@ export function ProductContent({ productId }: ProductContentProps) {
         <TabsList className="bg-gray-50 border-b border-gray-200 w-full justify-start rounded-none p-0">
           <TabsTrigger
             value="dashboard"
-            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-[#9e1b32] data-[state=active]:shadow-none rounded-none"
+            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-contoso-blue data-[state=active]:shadow-none rounded-none"
           >
             Dashboard
           </TabsTrigger>
           <TabsTrigger
             value="datasets"
-            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-[#9e1b32] data-[state=active]:shadow-none rounded-none"
+            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-contoso-blue data-[state=active]:shadow-none rounded-none"
           >
             Datasets
           </TabsTrigger>
           <TabsTrigger
             value="api"
-            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-[#9e1b32] data-[state=active]:shadow-none rounded-none"
+            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-contoso-blue data-[state=active]:shadow-none rounded-none"
           >
             API
           </TabsTrigger>
@@ -87,7 +87,9 @@ export function ProductContent({ productId }: ProductContentProps) {
                         This interactive dashboard requires access permissions. Request access to view and interact with
                         the full dashboard.
                       </p>
-                      <Button className="bg-[#9e1b32] hover:bg-[#7a1522]">Request Dashboard Access</Button>
+                      <Button className="bg-contoso-blue hover:bg-contoso-blue/90 text-white">
+                        Request Dashboard Access
+                      </Button>
                     </div>
                   </div>
                 )}
@@ -233,7 +235,7 @@ export function ProductContent({ productId }: ProductContentProps) {
             </div>
 
             <div className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg">
-              <Database className="h-8 w-8 text-blue-600 flex-shrink-0" />
+              <Database className="h-8 w-8 text-contoso-blue flex-shrink-0" />
               <div>
                 <h3 className="font-medium">
                   {productId === 4 ? "course_scheduling_data.json" : "geographic_distribution.json"}
@@ -277,8 +279,8 @@ export function ProductContent({ productId }: ProductContentProps) {
               <h4 className="text-sm font-medium mb-2">API Endpoint</h4>
               <div className="bg-gray-900 text-gray-100 p-3 rounded font-mono text-sm overflow-x-auto">
                 {productId === 4
-                  ? "https://api.data.uark.edu/v1/course-enrollments"
-                  : "https://api.data.uark.edu/v1/student-demographics"}
+                  ? "https://api.data.contoso.edu/v1/course-enrollments"
+                  : "https://api.data.contoso.edu/v1/student-demographics"}
               </div>
             </div>
 
@@ -297,7 +299,7 @@ export function ProductContent({ productId }: ProductContentProps) {
               <p className="text-gray-700">
                 For complete API documentation, including authentication, parameters, and response formats, please refer
                 to the{" "}
-                <a href="#" className="text-[#9e1b32] hover:underline">
+                <a href="#" className="text-contoso-blue hover:underline">
                   API Documentation
                 </a>
                 .

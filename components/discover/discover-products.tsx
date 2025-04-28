@@ -79,7 +79,7 @@ export function DiscoverProducts() {
       {products.map((product) => (
         <div
           key={product.id}
-          className="bg-white rounded-lg border border-gray-200 p-4 hover:border-[#9e1b32] hover:shadow-sm transition-all"
+          className="bg-white rounded-lg border border-gray-200 p-4 hover:border-contoso-blue hover:shadow-sm transition-all"
         >
           <div className="flex gap-4">
             <div className="flex-shrink-0">
@@ -145,11 +145,11 @@ export function DiscoverProducts() {
                   </Button>
 
                   {product.access === "restricted" ? (
-                    <Button size="sm" className="bg-[#9e1b32] hover:bg-[#7a1522]">
+                    <Button size="sm" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white">
                       Request Access
                     </Button>
                   ) : (
-                    <Button size="sm" className="bg-[#9e1b32] hover:bg-[#7a1522]">
+                    <Button size="sm" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white">
                       Access Now
                       <ExternalLink className="ml-1 h-3 w-3" />
                     </Button>

@@ -25,8 +25,8 @@ export function DatasetsSidebar() {
       <div className="p-4 border-b flex justify-center">
         <Link href="/" className="flex items-center justify-center">
           <Image
-            src="/images/uark-logo.png"
-            alt="University of Arkansas Logo"
+            src="/images/university_of_contoso_transparent.png"
+            alt="University of Contoso Logo"
             width={100}
             height={50}
             className="h-12 w-auto object-contain"
@@ -35,7 +35,7 @@ export function DatasetsSidebar() {
       </div>
 
       <div className="p-4 border-b">
-        <button className="flex items-center gap-2 text-[#9e1b32] font-medium">
+        <button className="flex items-center gap-2 text-contoso-orange font-medium">
           <Plus className="h-4 w-4" />
           <span>Request</span>
         </button>
@@ -73,10 +73,10 @@ export function DatasetsSidebar() {
             <Link
               href="/datasets"
               className={`flex items-center gap-2 px-2 py-2 rounded-md text-gray-700 hover:bg-gray-100 ${
-                pathname === "/datasets" ? "bg-gray-100" : ""
+                pathname === "/datasets" ? "bg-gray-100 text-contoso-orange" : ""
               }`}
             >
-              <Database className="h-5 w-5 text-gray-500" />
+              <Database className={`h-5 w-5 ${pathname === "/datasets" ? "text-contoso-orange" : "text-gray-500"}`} />
               <span>Datasets</span>
             </Link>
           </li>
@@ -84,10 +84,12 @@ export function DatasetsSidebar() {
             <Link
               href="/data-products"
               className={`flex items-center gap-2 px-2 py-2 rounded-md text-gray-700 hover:bg-gray-100 ${
-                pathname === "/data-products" ? "bg-gray-100" : ""
+                pathname === "/data-products" ? "bg-gray-100 text-contoso-orange" : ""
               }`}
             >
-              <Package className="h-5 w-5 text-gray-500" />
+              <Package
+                className={`h-5 w-5 ${pathname === "/data-products" ? "text-contoso-orange" : "text-gray-500"}`}
+              />
               <span>Data Products</span>
             </Link>
           </li>
