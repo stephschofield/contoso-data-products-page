@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Header } from "@/components/header"
@@ -17,6 +17,9 @@ export default function TerraformConfirmPage() {
   const router = useRouter()
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+
+  const searchParams = useSearchParams()
+  const resourceType = searchParams.get("type") || "fabric"
 
   // In a real application, this would come from form state or API
   const deploymentConfig = {
@@ -48,15 +51,18 @@ enable_monitoring = true`,
           <div className="space-y-8">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tight">Confirm Deployment</h1>
-              <p className="text-gray-500">Review your Terraform deployment configuration before proceeding.</p>
+              <p className="text-gray-500">
+                Review your {searchParams.get("type") === "azure" ? "Azure" : "Fabric"} resources deployment
+                configuration before proceeding.
+              </p>
             </div>
 
             <Alert>
               <AlertTriangle className="h-4 w-4" />
               <AlertTitle>Important</AlertTitle>
               <AlertDescription>
-                This action will deploy infrastructure resources to your Azure subscription. Please review the
-                configuration carefully before proceeding.
+                This action will deploy {resourceType === "azure" ? "Azure" : "Fabric"} infrastructure resources to your
+                Azure subscription. Please review the configuration carefully before proceeding.
               </AlertDescription>
             </Alert>
 
@@ -64,7 +70,8 @@ enable_monitoring = true`,
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2">
                   <FileCode2 className="h-5 w-5 text-primary" />
-                  Terraform Deployment Configuration
+                  Terraform Deployment Configuration -{" "}
+                  {resourceType === "azure" ? "Azure Resources" : "Fabric Resources"}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-4 pb-0">

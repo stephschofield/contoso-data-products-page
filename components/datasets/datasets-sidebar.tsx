@@ -56,11 +56,11 @@ export function DatasetsSidebar() {
           </li>
           <li>
             <Link
-              href="/deploy-fabric"
+              href="/deploy-azure-resources"
               className="flex items-center gap-2 px-2 py-2 rounded-md text-gray-700 hover:bg-gray-100"
             >
               <Server className="h-5 w-5 text-gray-500" />
-              <span>Deploy Fabric</span>
+              <span>Deploy Azure Resources</span>
             </Link>
           </li>
           <li>

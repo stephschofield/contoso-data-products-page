@@ -116,9 +116,9 @@ export default function GetStartedPage() {
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-3xl">
             <div className="mb-8">
-              <h1 className="text-3xl font-bold tracking-tighter mb-2">Get Started with Fabric Deploy</h1>
+              <h1 className="text-3xl font-bold tracking-tighter mb-2">Get Started with Resource Deployment</h1>
               <p className="text-muted-foreground">
-                Complete the following steps to set up and deploy your Fabric platform.
+                Complete the following steps to set up and deploy resources in your subscription.
               </p>
             </div>
 

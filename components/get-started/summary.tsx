@@ -148,8 +148,8 @@ export function GetStartedSummary({ formData }: SummaryProps) {
       <div className="rounded-lg border p-4 bg-muted/50">
         <h3 className="font-medium mb-2">Ready to Deploy</h3>
         <p className="text-sm text-muted-foreground">
-          Please review your configuration details above. Once you click "Deploy", we'll start setting up your Fabric
-          platform with the specified configuration. This process may take a few minutes to complete.
+          Please review your configuration details above. Once you click "Deploy", we'll start setting up your resources
+          with the specified configuration. This process may take a few minutes to complete.
         </p>
       </div>
     </div>

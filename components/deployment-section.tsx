@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { FileCode2, Braces, ArrowRight } from "lucide-react"
+import { FileCode2, Braces, ArrowRight, Database, Server } from "lucide-react"
 
 export function DeploymentSection() {
   const router = useRouter()
@@ -26,6 +26,7 @@ export function DeploymentSection() {
     bicepScope: "resourceGroup",
     additionalParams: "",
   })
+  const [resourceType, setResourceType] = useState("fabric")
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -37,9 +38,9 @@ export function DeploymentSection() {
 
     // Navigate to the confirmation page
     if (deploymentType === "terraform") {
-      router.push("/deploy/terraform/confirm")
+      router.push(`/deploy/terraform/confirm?type=${resourceType}`)
     } else {
-      router.push("/deploy/bicep/confirm")
+      router.push(`/deploy/bicep/confirm?type=${resourceType}`)
     }
   }
 
@@ -48,9 +49,9 @@ export function DeploymentSection() {
       <div className="container px-4 md:px-6">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="space-y-4 text-center">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Deploy Fabric Platform</h1>
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Deploy Azure Resources</h1>
             <p className="text-xl text-gray-500 max-w-[600px] mx-auto">
-              Choose your preferred deployment method and get started in minutes.
+              Choose your preferred deployment method and resource type to get started in minutes.
             </p>
           </div>
 
@@ -71,6 +72,40 @@ export function DeploymentSection() {
                 <span>Bicep</span>
               </TabsTrigger>
             </TabsList>
+
+            <div className="mb-8">
+              <h2 className="text-lg font-medium mb-4">Select Resource Type</h2>
+              <div className="grid grid-cols-2 gap-4">
+                <div
+                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                    resourceType === "fabric" ? "border-primary bg-primary/5" : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  onClick={() => setResourceType("fabric")}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <Database className="h-5 w-5 text-primary" />
+                    <h3 className="font-medium">Fabric Resources</h3>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Deploy Microsoft Fabric analytics resources including workspaces, lakehouses, and warehouses.
+                  </p>
+                </div>
+                <div
+                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                    resourceType === "azure" ? "border-primary bg-primary/5" : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  onClick={() => setResourceType("azure")}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <Server className="h-5 w-5 text-primary" />
+                    <h3 className="font-medium">Azure Resources</h3>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Deploy general Azure resources including virtual machines, storage accounts, and networking.
+                  </p>
+                </div>
+              </div>
+            </div>
 
             <Card className="border-none shadow-lg">
               <CardHeader className="pb-4">
