@@ -47,11 +47,11 @@ export function DatasetsSidebar() {
             <Link
               href="/"
               className={`flex items-center gap-2 px-2 py-2 rounded-md text-gray-700 hover:bg-gray-100 ${
-                pathname === "/" ? "bg-gray-100" : ""
+                pathname === "/" ? "bg-gray-100 text-contoso-blue" : ""
               }`}
             >
-              <Home className="h-5 w-5 text-gray-500" />
-              <span>Home</span>
+              <Home className={`h-5 w-5 ${pathname === "/" ? "text-contoso-blue" : "text-gray-500"}`} />
+              <span>Discover</span>
             </Link>
           </li>
           <li>

@@ -24,6 +24,9 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-6">
+          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-contoso-orange">
+            Discover
+          </Link>
           <Link href="/deploy-fabric" className="text-sm font-medium text-gray-700 hover:text-contoso-orange">
             Deploy Fabric
           </Link>
