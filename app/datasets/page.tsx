@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Plus, Search } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function DatasetsPage() {
   return (
@@ -14,13 +15,15 @@ export default function DatasetsPage() {
       <div className="bg-white border-b">
         <div className="container flex justify-between items-center py-4">
           <h1 className="text-3xl font-bold">Discover Data Products Across Your Organization</h1>
-          <Image
-            src="/images/university_of_contoso_transparent.png"
-            alt="University of Contoso Logo"
-            width={120}
-            height={60}
-            className="h-12 w-auto"
-          />
+          <Link href="/">
+            <Image
+              src="/images/university_of_contoso_transparent.png"
+              alt="University of Contoso Logo"
+              width={120}
+              height={60}
+              className="h-12 w-auto"
+            />
+          </Link>
         </div>
       </div>
       <div className="bg-contoso-orange h-5 w-full"></div>
