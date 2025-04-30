@@ -1,26 +1,12 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
-// This function can be marked `async` if using `await` inside
+// Simplified middleware that doesn't enforce authentication
 export function middleware(request: NextRequest) {
-  // Return early if this is a request for an API route
-  if (request.nextUrl.pathname.startsWith("/api")) {
-    return NextResponse.next()
-  }
-
+  // Simply allow all requests to proceed
   return NextResponse.next()
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 }
