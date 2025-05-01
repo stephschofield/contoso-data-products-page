@@ -1,12 +1,22 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
+import { getToken } from "next-auth/jwt"
 
-// Simplified middleware that doesn't enforce authentication
-export function middleware(request: NextRequest) {
-  // Simply allow all requests to proceed
+export async function middleware(request: NextRequest) {
+  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
+
+  // Path that requires admin role
+  if (request.nextUrl.pathname.startsWith("/admin")) {
+    const userRoles = token?.roles || []
+
+    if (!userRoles.includes("admin")) {
+      return NextResponse.redirect(new URL("/unauthorized", request.url))
+    }
+  }
+
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/admin/:path*", "/dashboard/:path*"],
 }
