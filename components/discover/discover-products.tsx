@@ -144,16 +144,10 @@ export function DiscoverProducts() {
                     <Link href={`/discover/product/${product.id}`}>View Details</Link>
                   </Button>
 
-                  {product.access === "restricted" ? (
-                    <Button size="sm" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white">
-                      Request Access
-                    </Button>
-                  ) : (
-                    <Button size="sm" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white">
-                      Access Now
-                      <ExternalLink className="ml-1 h-3 w-3" />
-                    </Button>
-                  )}
+                  <Button size="sm" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white">
+                    Access Now
+                    <ExternalLink className="ml-1 h-3 w-3" />
+                  </Button>
                 </div>
               </div>
             </div>
