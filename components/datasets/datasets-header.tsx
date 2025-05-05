@@ -6,7 +6,12 @@ export function DatasetsHeader() {
       <div>
         <h2 className="text-3xl font-bold text-[#9e1b32]">Datasets</h2>
         <p className="text-gray-600 mt-2 max-w-2xl">
-          Explore, analyze, and share quality data across your organization.{" "}
+          Explore, analyze, and share quality data across your organization. Browse our collection of
+          <span className="font-medium">
+            {" "}
+            tabular, relational, analytics, visualization, document-based, and raw datasets
+          </span>
+          .{" "}
           <a href="#" className="text-[#9e1b32] hover:underline">
             Learn more
           </a>{" "}

@@ -84,11 +84,14 @@ export function DiscoverProducts() {
           <div className="flex gap-4">
             <div className="flex-shrink-0">
               <Image
-                src={product.image || "/placeholder.svg"}
+                src={product.image || "/placeholder.svg?height=120&width=120&text=No+Image"}
                 alt={product.title}
                 width={120}
                 height={120}
                 className="rounded-md object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = "/placeholder.svg?height=120&width=120&text=Error+Loading+Image"
+                }}
               />
             </div>
 

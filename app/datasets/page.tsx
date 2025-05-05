@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Plus, Search } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { DatasetTypes } from "@/components/datasets/dataset-types"
 
 export default function DatasetsPage() {
   return (
@@ -52,6 +53,9 @@ export default function DatasetsPage() {
             </div>
 
             <DatasetFilters />
+
+            {/* Dataset Types Section */}
+            <DatasetTypes />
 
             <div className="mt-8">
               <div className="flex justify-between items-center mb-4">

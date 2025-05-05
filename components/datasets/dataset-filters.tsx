@@ -1,42 +1,107 @@
 "use client"
 
 import { useState } from "react"
+import { Check, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Filter } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function DatasetFilters() {
-  const [activeFilter, setActiveFilter] = useState("all")
+  const [selectedType, setSelectedType] = useState<string>("All Types")
+  const [selectedAccess, setSelectedAccess] = useState<string>("All Access")
+  const [selectedSort, setSelectedSort] = useState<string>("Most Recent")
 
-  const filters = [
-    { id: "all", label: "All Datasets" },
-    { id: "research", label: "Research Excellence" },
-    { id: "students", label: "Students" },
-    { id: "employee", label: "Employee" },
-    { id: "pretrained", label: "Pre-trained Model" },
-    { id: "nlp", label: "NLP" },
+  const datasetTypes = [
+    "All Types",
+    "Tabular Data",
+    "Relational",
+    "Analytics",
+    "Visualization",
+    "Documents",
+    "Raw Data",
   ]
 
-  return (
-    <div className="mt-4 flex justify-between">
-      <div className="flex space-x-1">
-        {filters.map((filter) => (
-          <button
-            key={filter.id}
-            className={`px-3 py-1.5 text-sm rounded-md ${
-              activeFilter === filter.id
-                ? "bg-contoso-orange text-white"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
-            onClick={() => setActiveFilter(filter.id)}
-          >
-            {filter.label}
-          </button>
-        ))}
-      </div>
+  const accessTypes = ["All Access", "Public", "Restricted", "Private"]
+  const sortOptions = ["Most Recent", "Oldest", "Most Popular", "Highest Usability"]
 
-      <Button variant="outline" size="sm" className="flex items-center gap-1">
-        <Filter className="h-4 w-4" />
-        <span>Filters</span>
+  return (
+    <div className="mt-6 flex flex-wrap gap-3">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" className="flex items-center gap-2">
+            <span>Type: {selectedType}</span>
+            <ChevronDown className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuGroup>
+            {datasetTypes.map((type) => (
+              <DropdownMenuItem
+                key={type}
+                className="flex items-center justify-between"
+                onClick={() => setSelectedType(type)}
+              >
+                {type}
+                {selectedType === type && <Check className="h-4 w-4" />}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" className="flex items-center gap-2">
+            <span>Access: {selectedAccess}</span>
+            <ChevronDown className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuGroup>
+            {accessTypes.map((access) => (
+              <DropdownMenuItem
+                key={access}
+                className="flex items-center justify-between"
+                onClick={() => setSelectedAccess(access)}
+              >
+                {access}
+                {selectedAccess === access && <Check className="h-4 w-4" />}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" className="flex items-center gap-2">
+            <span>Sort: {selectedSort}</span>
+            <ChevronDown className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuGroup>
+            {sortOptions.map((option) => (
+              <DropdownMenuItem
+                key={option}
+                className="flex items-center justify-between"
+                onClick={() => setSelectedSort(option)}
+              >
+                {option}
+                {selectedSort === option && <Check className="h-4 w-4" />}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <Button variant="outline" className="ml-auto">
+        Clear Filters
       </Button>
     </div>
   )
