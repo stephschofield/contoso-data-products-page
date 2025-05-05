@@ -61,12 +61,7 @@ export function DataProductsList() {
           className="border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow"
         >
           <div className="relative aspect-square">
-            <Image
-              src={product.image || "/placeholder.svg?height=300&width=300&text=No+Image"}
-              alt={product.title}
-              fill
-              className="object-cover"
-            />
+            <Image src={product.image || "/placeholder.svg"} alt={product.title} fill className="object-cover" />
             <button className="absolute top-2 right-2 p-1 rounded-full bg-white/80 hover:bg-white">
               <MoreVertical className="h-5 w-5 text-gray-600" />
             </button>
