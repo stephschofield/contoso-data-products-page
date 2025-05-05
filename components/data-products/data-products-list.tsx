@@ -66,9 +66,6 @@ export function DataProductsList() {
               alt={product.title}
               fill
               className="object-cover"
-              onError={(e) => {
-                e.currentTarget.src = "/placeholder.svg?height=300&width=300&text=Error+Loading+Image"
-              }}
             />
             <button className="absolute top-2 right-2 p-1 rounded-full bg-white/80 hover:bg-white">
               <MoreVertical className="h-5 w-5 text-gray-600" />
