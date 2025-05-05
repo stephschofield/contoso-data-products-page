@@ -73,7 +73,11 @@ export function ProductAccess({ productId }: ProductAccessProps) {
                 </ul>
               </div>
 
-              <Button className="w-full bg-[#9e1b32] hover:bg-[#7a1522]" asChild>
+              <Button
+                className="w-full border-amber-500 bg-amber-50 text-amber-700 hover:bg-amber-100 hover:text-amber-800"
+                variant="outline"
+                asChild
+              >
                 <Link href={`/request-access/${productId}`}>Request Now</Link>
               </Button>
 
