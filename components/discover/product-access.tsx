@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Lock, CheckCircle, AlertCircle, HelpCircle } from "lucide-react"
+import Link from "next/link"
 
 interface ProductAccessProps {
   productId: number
@@ -72,7 +73,9 @@ export function ProductAccess({ productId }: ProductAccessProps) {
                 </ul>
               </div>
 
-              <Button className="w-full bg-[#9e1b32] hover:bg-[#7a1522]">Request Access</Button>
+              <Button className="w-full bg-[#9e1b32] hover:bg-[#7a1522]" asChild>
+                <Link href={`/request-access/${productId}`}>Request Now</Link>
+              </Button>
 
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <HelpCircle className="h-4 w-4" />

@@ -165,7 +165,7 @@ export function ProductHeader({ productId }: ProductHeaderProps) {
 
               {product.access === "restricted" ? (
                 <Button size="sm" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white" asChild>
-                  <Link href={`/request-access/${product.id}`}>Request Access</Link>
+                  <Link href={`/request-access/${product.id}`}>Request Now</Link>
                 </Button>
               ) : (
                 <Button size="sm" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white">
