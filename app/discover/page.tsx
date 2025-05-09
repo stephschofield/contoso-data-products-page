@@ -5,7 +5,6 @@ import { DiscoverFilters } from "@/components/discover/discover-filters"
 import { DiscoverProducts } from "@/components/discover/discover-products"
 import { DiscoverCategories } from "@/components/discover/discover-categories"
 import { DiscoverPopular } from "@/components/discover/discover-popular"
-import { ImageDebug } from "@/components/image-debug"
 
 export default function DiscoverPage() {
   return (
@@ -30,10 +29,6 @@ export default function DiscoverPage() {
 
             <DiscoverProducts />
           </div>
-        </div>
-        {/* Add this at the end of the main content */}
-        <div className="container px-4 py-8">
-          <ImageDebug />
         </div>
       </main>
 

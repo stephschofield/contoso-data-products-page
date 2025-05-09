@@ -89,9 +89,6 @@ export function DiscoverProducts() {
                 width={120}
                 height={120}
                 className="rounded-md object-cover"
-                onError={(e) => {
-                  e.currentTarget.src = "/placeholder.svg?height=120&width=120&text=Error+Loading+Image"
-                }}
               />
             </div>
 

@@ -1,21 +1,22 @@
 import { Footer } from "@/components/footer"
-import { DatasetsList } from "@/components/datasets/datasets-list"
 import { DatasetsSidebar } from "@/components/datasets/datasets-sidebar"
 import { DatasetsHeader } from "@/components/datasets/datasets-header"
+import { DatasetsList } from "@/components/datasets/datasets-list"
 import { DatasetFilters } from "@/components/datasets/dataset-filters"
+import { DatasetTypes } from "@/components/datasets/dataset-types"
+import { PurviewExplorer } from "@/components/purview/purview-explorer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Plus, Search } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { DatasetTypes } from "@/components/datasets/dataset-types"
 
 export default function DatasetsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <div className="bg-white border-b">
         <div className="container flex justify-between items-center py-4">
-          <h1 className="text-3xl font-bold">Discover Data Products Across Your Organization</h1>
+          <h1 className="text-3xl font-bold">Discover Datasets Across Your Organization</h1>
           <Link href="/">
             <Image
               src="/images/university_of_contoso_transparent.png"
@@ -54,34 +55,19 @@ export default function DatasetsPage() {
 
             <DatasetFilters />
 
-            {/* Dataset Types Section */}
-            <DatasetTypes />
+            <div className="mt-8">
+              <h2 className="text-xl font-bold mb-4">Dataset Types</h2>
+              <DatasetTypes />
+            </div>
 
             <div className="mt-8">
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center gap-2">
-                  <svg
-                    className="h-5 w-5 text-contoso-orange"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
-                    />
-                  </svg>
-                  <h2 className="text-xl font-bold">Available Datasets</h2>
-                </div>
-                <a href="#" className="text-sm text-contoso-orange hover:underline">
-                  See All
-                </a>
-              </div>
-
+              <h2 className="text-xl font-bold mb-4">Featured Datasets</h2>
               <DatasetsList />
+            </div>
+
+            <div className="mt-12">
+              <h2 className="text-xl font-bold mb-4">Purview Data Catalog</h2>
+              <PurviewExplorer />
             </div>
           </div>
         </main>

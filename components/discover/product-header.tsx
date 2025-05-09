@@ -105,7 +105,12 @@ export function ProductHeader({ productId }: ProductHeaderProps) {
   return (
     <div className="relative">
       <div className="h-64 bg-gray-200 relative">
-        <Image src={product.image || "/placeholder.svg"} alt={product.title} fill className="object-cover" />
+        <Image
+          src={product.image || "/placeholder.svg?height=256&width=1200&text=No+Image"}
+          alt={product.title}
+          fill
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
       </div>
 

@@ -2,86 +2,102 @@ import { NextResponse } from "next/server"
 import { generateText } from "ai"
 import { openai } from "@ai-sdk/openai"
 
-// Mock database of data products and datasets
+// Mock database of financial data products and datasets
 const dataProducts = [
   {
     id: 1,
-    title: "Student Demographics Analysis",
+    title: "Customer 360° Dashboard",
     type: "product",
-    description: "Comprehensive breakdown of student population by various demographic factors",
-    image: "/images/student-demographics.jpeg",
+    description: "Comprehensive view of customer financial behavior, product usage, and engagement metrics",
+    image: "/placeholder.svg?height=300&width=300&text=Customer+360",
     link: "/discover/product/1",
-    tags: ["demographics", "analytics", "enrollment"],
-    keywords: ["demographics", "student", "population", "diversity", "ethnicity", "gender", "age"],
+    tags: ["customer", "analytics", "dashboard"],
+    keywords: ["customer", "behavior", "engagement", "360", "profile", "segmentation"],
   },
   {
     id: 2,
-    title: "Enrollment Analytics",
+    title: "Credit Risk Assessment Model",
     type: "product",
-    description: "Track and analyze enrollment trends, demographics, and projections",
-    image: "/images/enrollment-analytics.jpeg",
+    description: "Advanced risk scoring model for loan applications and portfolio management",
+    image: "/placeholder.svg?height=300&width=300&text=Credit+Risk",
     link: "/discover/product/2",
-    tags: ["enrollment", "analytics", "trends"],
-    keywords: ["enrollment", "trends", "registration", "admissions", "student numbers"],
+    tags: ["risk", "credit", "model"],
+    keywords: ["risk", "credit", "loan", "scoring", "default", "assessment"],
   },
   {
     id: 3,
-    title: "Campus Resource Utilization",
+    title: "Regulatory Compliance Monitor",
     type: "product",
-    description: "Monitor usage patterns of campus facilities and resources",
-    image: "/images/campus-resource-utilization.jpeg",
+    description: "Real-time monitoring of transactions and activities for regulatory compliance",
+    image: "/placeholder.svg?height=300&width=300&text=Compliance",
     link: "/discover/product/3",
-    tags: ["sustainability", "operations", "utilities"],
-    keywords: ["campus", "resources", "facilities", "usage", "utilization", "buildings"],
+    tags: ["compliance", "monitoring", "regulatory"],
+    keywords: ["compliance", "regulatory", "monitoring", "KYC", "AML", "fraud"],
   },
   {
     id: 4,
-    title: "Course Enrollment Patterns",
+    title: "Investment Portfolio Analytics",
     type: "product",
-    description: "Analysis of enrollment trends, popular courses, and scheduling optimization",
-    image: "/images/course-enrollment.jpeg",
+    description: "Performance analysis, risk assessment, and forecasting for investment portfolios",
+    image: "/placeholder.svg?height=300&width=300&text=Portfolio+Analytics",
     link: "/discover/product/4",
-    tags: ["courses", "enrollment", "scheduling"],
-    keywords: ["courses", "enrollment", "scheduling", "popular courses", "class size", "demand"],
+    tags: ["investments", "analytics", "portfolio"],
+    keywords: ["investment", "portfolio", "performance", "asset", "allocation", "returns"],
   },
   {
     id: 5,
-    title: "Alumni Career Outcomes",
+    title: "Fraud Detection System",
     type: "product",
-    description: "Employment statistics, career paths, and success metrics for graduates",
-    image: "/images/alumni-careers.jpeg",
+    description: "AI-powered system for detecting and preventing fraudulent transactions",
+    image: "/placeholder.svg?height=300&width=300&text=Fraud+Detection",
     link: "/discover/product/5",
-    tags: ["alumni", "careers", "outcomes"],
-    keywords: ["alumni", "careers", "jobs", "employment", "graduates", "outcomes"],
+    tags: ["security", "fraud", "AI"],
+    keywords: ["fraud", "detection", "security", "anomaly", "transaction", "alert"],
   },
   {
     id: 6,
-    title: "Library Resource Usage",
+    title: "Branch Performance Dashboard",
     type: "product",
-    description: "Statistics on library visits, resource checkouts, and digital access",
-    image: "/images/library-resource-usage.jpeg",
+    description: "Comprehensive analytics on branch operations, performance, and customer traffic",
+    image: "/placeholder.svg?height=300&width=300&text=Branch+Analytics",
     link: "/discover/product/6",
-    tags: ["library", "resources", "usage"],
-    keywords: ["library", "books", "resources", "checkouts", "digital", "usage"],
+    tags: ["operations", "branch", "performance"],
+    keywords: ["branch", "performance", "operations", "traffic", "efficiency", "metrics"],
   },
 ]
 
 const datasets = [
   {
     id: 101,
-    title: "Course Demand Dataset",
+    title: "Transaction History Dataset",
     type: "dataset",
-    description: "Raw data on course registrations and waitlists for the past 5 years",
-    tags: ["raw data", "courses", "historical"],
-    keywords: ["courses", "demand", "registration", "waitlist", "historical"],
+    description: "Anonymized customer transaction data for the past 5 years",
+    tags: ["transactions", "raw data", "historical"],
+    keywords: ["transactions", "history", "payments", "transfers", "deposits", "withdrawals"],
   },
   {
     id: 102,
-    title: "Student Demographics Raw Data",
+    title: "Customer Demographics Dataset",
     type: "dataset",
-    description: "Anonymized student demographic information by semester",
-    tags: ["demographics", "raw data", "students"],
-    keywords: ["demographics", "students", "raw data", "anonymized"],
+    description: "Anonymized customer demographic information with financial behaviors",
+    tags: ["demographics", "customers", "raw data"],
+    keywords: ["demographics", "customers", "age", "income", "location", "segmentation"],
+  },
+  {
+    id: 103,
+    title: "Market Data Feed",
+    type: "dataset",
+    description: "Historical and real-time market data for financial instruments",
+    tags: ["market", "real-time", "financial"],
+    keywords: ["market", "stocks", "bonds", "rates", "prices", "indices"],
+  },
+  {
+    id: 104,
+    title: "Loan Performance Dataset",
+    type: "dataset",
+    description: "Historical loan performance data including defaults and prepayments",
+    tags: ["loans", "performance", "risk"],
+    keywords: ["loans", "performance", "default", "prepayment", "credit", "risk"],
   },
 ]
 
@@ -97,11 +113,11 @@ export async function POST(request: Request) {
     const { text: aiAnalysis } = await generateText({
       model: openai("gpt-4o"),
       prompt: `
-        You are an AI assistant for a university data platform. 
+        You are an AI assistant for a financial institution's internal data platform. 
         The user has searched for: "${query}"
         
-        Based on this search query, provide a brief, helpful response about what data products or datasets might be relevant.
-        Keep your response under 150 words and focus on being helpful.
+        Based on this search query, provide a brief, helpful response about what financial data products or datasets might be relevant.
+        Keep your response under 150 words and focus on being helpful for banking professionals.
         
         Available data products and datasets:
         ${JSON.stringify([...dataProducts, ...datasets])}

@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, User, FileText, Tag } from "lucide-react"
+import { Calendar, User, FileText, Tag, Shield, AlertTriangle } from "lucide-react"
 
 interface ProductDetailsProps {
   productId: number
@@ -10,17 +10,18 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
   // Mock data - in a real app, you would fetch this based on the productId
   const details = {
     description:
-      "This data product provides a comprehensive analysis of student demographics across the university. It includes breakdowns by age, gender, ethnicity, geographic origin, major, and enrollment status. The data is updated weekly and can be used for institutional research, enrollment management, diversity initiatives, and strategic planning.",
-    owner: "Office of Institutional Research",
+      "This data product provides a comprehensive analysis of customer financial behavior across all banking channels and products. It includes transaction patterns, product usage, engagement metrics, lifetime value, and risk indicators. The data is updated daily and can be used for customer segmentation, personalized marketing, risk assessment, and product development.",
+    owner: "Customer Analytics Department",
     created: "January 15, 2023",
     updated: "August 3, 2023",
-    version: "2.4",
+    version: "3.2",
     format: "Dashboard, CSV, API",
-    tags: ["demographics", "students", "enrollment", "diversity", "institutional-research"],
-    dataUpdated: "Weekly",
-    dataSource: "Student Information System",
+    tags: ["customer", "analytics", "behavior", "segmentation", "financial-insights"],
+    dataUpdated: "Daily",
+    dataSource: "Core Banking System, Digital Banking Platform, CRM",
     dataQuality: "Verified",
-    compliance: ["FERPA Compliant", "PII Protected"],
+    compliance: ["GDPR Compliant", "PII Protected", "ISO 27001 Certified"],
+    sensitivity: "High - Contains anonymized customer data",
   }
 
   return (
@@ -29,19 +30,19 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
         <TabsList className="bg-gray-50 border-b border-gray-200 w-full justify-start rounded-none p-0">
           <TabsTrigger
             value="overview"
-            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-[#9e1b32] data-[state=active]:shadow-none rounded-none"
+            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-[#00336f] data-[state=active]:shadow-none rounded-none"
           >
             Overview
           </TabsTrigger>
           <TabsTrigger
             value="metadata"
-            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-[#9e1b32] data-[state=active]:shadow-none rounded-none"
+            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-[#00336f] data-[state=active]:shadow-none rounded-none"
           >
             Metadata
           </TabsTrigger>
           <TabsTrigger
             value="usage"
-            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-[#9e1b32] data-[state=active]:shadow-none rounded-none"
+            className="px-6 py-3 data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-[#00336f] data-[state=active]:shadow-none rounded-none"
           >
             Usage Guidelines
           </TabsTrigger>
@@ -84,6 +85,22 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
               <div>
                 <p className="text-sm font-medium text-gray-700">Available Formats</p>
                 <p className="text-sm text-gray-600">{details.format}</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <Shield className="h-5 w-5 text-gray-500 mt-0.5" />
+              <div>
+                <p className="text-sm font-medium text-gray-700">Data Sensitivity</p>
+                <p className="text-sm text-gray-600">{details.sensitivity}</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2">
+              <AlertTriangle className="h-5 w-5 text-gray-500 mt-0.5" />
+              <div>
+                <p className="text-sm font-medium text-gray-700">Compliance</p>
+                <p className="text-sm text-gray-600">{details.compliance.join(", ")}</p>
               </div>
             </div>
           </div>
@@ -142,21 +159,22 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
             <div>
               <h3 className="text-lg font-medium mb-2">Permitted Uses</h3>
               <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                <li>Institutional research and reporting</li>
-                <li>Strategic planning and decision making</li>
-                <li>Program evaluation and assessment</li>
-                <li>Grant applications and reporting</li>
-                <li>Internal presentations and communications</li>
+                <li>Customer segmentation and targeting</li>
+                <li>Product development and optimization</li>
+                <li>Risk assessment and management</li>
+                <li>Customer experience improvement</li>
+                <li>Internal reporting and analytics</li>
               </ul>
             </div>
 
             <div>
               <h3 className="text-lg font-medium mb-2">Restrictions</h3>
               <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                <li>Do not share raw data outside the institution without approval</li>
-                <li>Do not use for identifying individual students</li>
-                <li>Aggregated data must have a minimum of 10 students per group</li>
-                <li>External publications require review by Institutional Research</li>
+                <li>Do not share data outside the organization without approval</li>
+                <li>Do not use for direct marketing without proper consent</li>
+                <li>Aggregated data must have a minimum of 50 customers per group</li>
+                <li>Do not attempt to re-identify anonymized individuals</li>
+                <li>External publications require review by Compliance and Data Governance</li>
               </ul>
             </div>
 
@@ -166,7 +184,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                 When using this data in reports or presentations, please include the following attribution:
                 <br />
                 <span className="italic">
-                  "Source: University of Arkansas Office of Institutional Research, Student Demographics Analysis, v
+                  "Source: Global Financial Bank, Customer Analytics Department, Customer 360° Dashboard, v
                   {details.version}"
                 </span>
               </p>

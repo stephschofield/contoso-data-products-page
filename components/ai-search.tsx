@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
-import { Search, X, Loader2, MessageSquare, Database, BarChart2 } from "lucide-react"
+import { Search, X, Loader2, MessageSquare, Database, BarChart2, Shield, CreditCard, DollarSign } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
@@ -135,8 +135,8 @@ export function AISearch() {
               <MessageSquare className="h-12 w-12 mx-auto text-gray-300 mb-3" />
               <h3 className="text-lg font-medium mb-1">AI-Powered Search</h3>
               <p className="text-gray-500 max-w-md mx-auto">
-                Ask questions in natural language to find data products, analyze trends, or get insights about your
-                data.
+                Ask questions in natural language to find financial data products, analyze trends, or get insights about
+                banking data.
               </p>
               <div className="mt-4 space-y-2">
                 <p className="text-sm text-gray-500">Try asking:</p>
@@ -144,23 +144,23 @@ export function AISearch() {
                   <Badge
                     variant="outline"
                     className="cursor-pointer hover:bg-gray-100"
-                    onClick={() => setQuery("Show me enrollment trends")}
+                    onClick={() => setQuery("Show me customer analytics data")}
                   >
-                    Show me enrollment trends
+                    Show me customer analytics data
                   </Badge>
                   <Badge
                     variant="outline"
                     className="cursor-pointer hover:bg-gray-100"
-                    onClick={() => setQuery("Which courses have the highest demand?")}
+                    onClick={() => setQuery("What risk assessment tools do we have?")}
                   >
-                    Which courses have the highest demand?
+                    What risk assessment tools do we have?
                   </Badge>
                   <Badge
                     variant="outline"
                     className="cursor-pointer hover:bg-gray-100"
-                    onClick={() => setQuery("Find data about student demographics")}
+                    onClick={() => setQuery("Find compliance monitoring dashboards")}
                   >
-                    Find data about student demographics
+                    Find compliance monitoring dashboards
                   </Badge>
                 </div>
               </div>
@@ -189,7 +189,7 @@ export function AISearch() {
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                   <div className="flex gap-3">
                     <div className="flex-shrink-0 mt-1">
-                      <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-[#00336f] flex items-center justify-center">
                         <MessageSquare className="h-4 w-4 text-white" />
                       </div>
                     </div>
@@ -231,6 +231,12 @@ export function AISearch() {
                         <div className="flex-shrink-0 w-16 h-16 rounded bg-gray-100 flex items-center justify-center">
                           {result.type === "dataset" ? (
                             <Database className="h-6 w-6 text-gray-400" />
+                          ) : result.tags?.includes("risk") ? (
+                            <Shield className="h-6 w-6 text-red-400" />
+                          ) : result.tags?.includes("customer") ? (
+                            <CreditCard className="h-6 w-6 text-blue-400" />
+                          ) : result.tags?.includes("investments") ? (
+                            <DollarSign className="h-6 w-6 text-green-400" />
                           ) : (
                             <BarChart2 className="h-6 w-6 text-gray-400" />
                           )}

@@ -29,15 +29,16 @@ export function DiscoverFilters() {
           <DropdownMenuSeparator />
           <DropdownMenuCheckboxItem checked>Public</DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem checked>Restricted</DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem>Private</DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem>Confidential</DropdownMenuCheckboxItem>
 
           <DropdownMenuSeparator />
           <DropdownMenuLabel>Department</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuCheckboxItem checked>Academic Affairs</DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem checked>Student Services</DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem checked>Research Office</DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem checked>Administration</DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem checked>Risk Management</DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem checked>Customer Analytics</DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem checked>Compliance</DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem checked>Finance</DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem checked>Operations</DropdownMenuCheckboxItem>
         </DropdownMenuContent>
       </DropdownMenu>
 

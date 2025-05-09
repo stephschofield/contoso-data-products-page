@@ -1,55 +1,55 @@
 import Image from "next/image"
-import { MoreVertical, Lock, Star, Users, BarChart2, PieChart, TrendingUp, Award, BookOpen } from "lucide-react"
+import { MoreVertical, Lock, Star, Users, BarChart2, TrendingUp, Shield, DollarSign } from "lucide-react"
 
 export function DataProductsList() {
   const dataProducts = [
     {
       id: 1,
-      title: "Student Success Dashboard",
-      description: "Comprehensive analytics on student performance and engagement metrics",
-      author: "Academic Analytics Team",
+      title: "Customer 360° Dashboard",
+      description: "Comprehensive view of customer financial behavior, product usage, and engagement metrics",
+      author: "Customer Analytics Team",
       updatedDays: 3,
       rating: 4.8,
       users: 245,
       tags: ["dashboard", "analytics"],
       isPrivate: false,
-      image: "/images/student-success.jpeg",
+      image: "/placeholder.svg?height=300&width=300&text=Customer+360",
     },
     {
       id: 2,
-      title: "Research Funding Tracker",
-      description: "Track and analyze research grants and funding opportunities",
-      author: "Research Office",
+      title: "Credit Risk Assessment Model",
+      description: "Advanced risk scoring model for loan applications and portfolio management",
+      author: "Risk Management",
       updatedDays: 5,
       rating: 4.6,
       users: 128,
-      tags: ["finance", "visualization"],
+      tags: ["risk", "model"],
       isPrivate: true,
-      image: "/placeholder.svg?height=300&width=300&text=Research+Funding",
+      image: "/placeholder.svg?height=300&width=300&text=Credit+Risk",
     },
     {
       id: 3,
-      title: "Campus Engagement Map",
-      description: "Interactive visualization of campus activities and student engagement",
-      author: "Student Affairs",
+      title: "Regulatory Compliance Monitor",
+      description: "Real-time monitoring of transactions and activities for regulatory compliance",
+      author: "Compliance Department",
       updatedDays: 7,
       rating: 4.9,
       users: 312,
-      tags: ["map", "interactive"],
+      tags: ["compliance", "monitoring"],
       isPrivate: false,
-      image: "/images/campus-resource-utilization.jpeg",
+      image: "/placeholder.svg?height=300&width=300&text=Compliance",
     },
     {
       id: 4,
-      title: "Alumni Career Outcomes",
-      description: "Employment statistics, career paths, and success metrics for graduates",
-      author: "Career Services",
+      title: "Investment Portfolio Analytics",
+      description: "Performance analysis, risk assessment, and forecasting for investment portfolios",
+      author: "Investment Strategy",
       updatedDays: 14,
       rating: 4.4,
       users: 203,
-      tags: ["alumni", "careers"],
+      tags: ["investments", "analytics"],
       isPrivate: true,
-      image: "/images/alumni-careers.jpeg",
+      image: "/placeholder.svg?height=300&width=300&text=Portfolio+Analytics",
     },
   ]
 
@@ -71,7 +71,7 @@ export function DataProductsList() {
               <MoreVertical className="h-5 w-5 text-gray-600" />
             </button>
             {product.isPrivate && (
-              <div className="absolute top-2 left-2 bg-[#9e1b32]/90 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
+              <div className="absolute top-2 left-2 bg-[#00336f]/90 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
                 <Lock className="h-3 w-3" />
                 <span>Restricted</span>
               </div>
@@ -108,19 +108,19 @@ export function DataProductsList() {
                     <TrendingUp className="h-3.5 w-3.5 text-purple-600" />
                   </div>
                 )}
-                {product.tags.includes("visualization") && (
+                {product.tags.includes("risk") && (
+                  <div className="w-6 h-6 flex items-center justify-center bg-red-100 rounded-full">
+                    <Shield className="h-3.5 w-3.5 text-red-600" />
+                  </div>
+                )}
+                {product.tags.includes("compliance") && (
                   <div className="w-6 h-6 flex items-center justify-center bg-green-100 rounded-full">
-                    <PieChart className="h-3.5 w-3.5 text-green-600" />
+                    <Shield className="h-3.5 w-3.5 text-green-600" />
                   </div>
                 )}
-                {product.tags.includes("alumni") && (
+                {product.tags.includes("investments") && (
                   <div className="w-6 h-6 flex items-center justify-center bg-amber-100 rounded-full">
-                    <Award className="h-3.5 w-3.5 text-amber-600" />
-                  </div>
-                )}
-                {product.tags.includes("careers") && (
-                  <div className="w-6 h-6 flex items-center justify-center bg-indigo-100 rounded-full">
-                    <BookOpen className="h-3.5 w-3.5 text-indigo-600" />
+                    <DollarSign className="h-3.5 w-3.5 text-amber-600" />
                   </div>
                 )}
               </div>
