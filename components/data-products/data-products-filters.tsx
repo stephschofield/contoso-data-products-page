@@ -9,11 +9,11 @@ export function DataProductsFilters() {
 
   const filters = [
     { id: "all", label: "All Products" },
-    { id: "risk", label: "Risk Analytics" },
-    { id: "customer", label: "Customer Insights" },
-    { id: "market", label: "Market Data" },
-    { id: "compliance", label: "Compliance" },
-    { id: "operations", label: "Operations" },
+    { id: "analytics", label: "Analytics" },
+    { id: "dashboards", label: "Dashboards" },
+    { id: "reports", label: "Reports" },
+    { id: "visualizations", label: "Visualizations" },
+    { id: "apis", label: "APIs" },
   ]
 
   return (
@@ -23,7 +23,9 @@ export function DataProductsFilters() {
           <button
             key={filter.id}
             className={`px-3 py-1.5 text-sm rounded-md ${
-              activeFilter === filter.id ? "bg-[#00336f] text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              activeFilter === filter.id
+                ? "bg-contoso-orange text-white"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
             onClick={() => setActiveFilter(filter.id)}
           >

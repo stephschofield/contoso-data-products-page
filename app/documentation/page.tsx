@@ -14,6 +14,9 @@ import {
   Github,
   ExternalLink,
   PlayCircle,
+  FileCode2,
+  Braces,
+  Server,
   Database,
   Globe,
   Search,
@@ -54,10 +57,14 @@ export default function DocumentationPage() {
         {/* Main Content */}
         <div className="container px-4 py-12">
           <Tabs defaultValue="getting-started" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsList className="grid w-full grid-cols-4 mb-8">
               <TabsTrigger value="getting-started" className="flex items-center gap-2 py-3">
                 <Lightbulb className="h-4 w-4" />
                 <span>Getting Started</span>
+              </TabsTrigger>
+              <TabsTrigger value="resources" className="flex items-center gap-2 py-3">
+                <Server className="h-4 w-4" />
+                <span>Resources</span>
               </TabsTrigger>
               <TabsTrigger value="tutorials" className="flex items-center gap-2 py-3">
                 <PlayCircle className="h-4 w-4" />
@@ -74,29 +81,29 @@ export default function DocumentationPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="md:col-span-2 space-y-8">
                   <div>
-                    <h2 className="text-3xl font-bold mb-4">Getting Started with Data Products</h2>
+                    <h2 className="text-3xl font-bold mb-4">Getting Started with Azure Resource Deployment</h2>
                     <p className="text-gray-600 mb-6">
-                      Our platform simplifies the process of discovering, accessing, and utilizing data products across
-                      your organization. Find valuable insights and make data-driven decisions with our comprehensive
-                      data catalog.
+                      Our platform simplifies the process of deploying Azure resources using Infrastructure as Code
+                      (IaC). Whether you prefer Terraform or Bicep, we've got you covered with streamlined workflows and
+                      best practices.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                       <Card>
                         <CardHeader className="pb-2">
                           <CardTitle className="flex items-center gap-2">
-                            <Database className="h-5 w-5 text-primary" />
-                            Discover Data Products
+                            <FileCode2 className="h-5 w-5 text-primary" />
+                            Terraform Deployment
                           </CardTitle>
-                          <CardDescription>Find valuable data assets</CardDescription>
+                          <CardDescription>Deploy using HashiCorp Terraform</CardDescription>
                         </CardHeader>
                         <CardContent>
                           <p className="text-sm text-gray-600 mb-4">
-                            Browse our catalog of data products to find insights and analytics that can help drive your
-                            decision-making.
+                            Use Terraform to deploy and manage your Azure resources with a powerful, multi-cloud
+                            compatible IaC tool.
                           </p>
                           <Button asChild>
-                            <Link href="/">Explore Data Products</Link>
+                            <Link href="/deploy-azure-resources?method=terraform">Get Started with Terraform</Link>
                           </Button>
                         </CardContent>
                       </Card>
@@ -104,17 +111,18 @@ export default function DocumentationPage() {
                       <Card>
                         <CardHeader className="pb-2">
                           <CardTitle className="flex items-center gap-2">
-                            <FileText className="h-5 w-5 text-primary" />
-                            Access Datasets
+                            <Braces className="h-5 w-5 text-primary" />
+                            Bicep Deployment
                           </CardTitle>
-                          <CardDescription>Work with raw and processed data</CardDescription>
+                          <CardDescription>Deploy using Microsoft Bicep</CardDescription>
                         </CardHeader>
                         <CardContent>
                           <p className="text-sm text-gray-600 mb-4">
-                            Access datasets in various formats to support your analytics and reporting needs.
+                            Use Bicep to deploy and manage your Azure resources with a native Azure IaC language that's
+                            simpler than ARM templates.
                           </p>
                           <Button asChild>
-                            <Link href="/datasets">Browse Datasets</Link>
+                            <Link href="/deploy-azure-resources?method=bicep">Get Started with Bicep</Link>
                           </Button>
                         </CardContent>
                       </Card>
@@ -123,24 +131,24 @@ export default function DocumentationPage() {
                     <h3 className="text-xl font-bold mb-3">Quick Start Guide</h3>
                     <ol className="list-decimal list-inside space-y-4 text-gray-600 mb-6">
                       <li>
-                        <span className="font-medium text-gray-900">Browse the catalog</span> - Explore our
-                        comprehensive collection of data products and datasets.
+                        <span className="font-medium text-gray-900">Choose your deployment method</span> - Select either
+                        Terraform or Bicep based on your team's expertise and requirements.
                       </li>
                       <li>
-                        <span className="font-medium text-gray-900">Find relevant data</span> - Use search and filters
-                        to locate the data that meets your needs.
+                        <span className="font-medium text-gray-900">Select your resource type</span> - Choose between
+                        Fabric resources or general Azure resources.
                       </li>
                       <li>
-                        <span className="font-medium text-gray-900">Request access</span> - Submit access requests for
-                        restricted data products.
+                        <span className="font-medium text-gray-900">Configure your deployment</span> - Provide the
+                        necessary configuration details for your resources.
                       </li>
                       <li>
-                        <span className="font-medium text-gray-900">Utilize data</span> - Download, connect to APIs, or
-                        view dashboards based on your access level.
+                        <span className="font-medium text-gray-900">Review and deploy</span> - Verify your configuration
+                        and initiate the deployment process.
                       </li>
                       <li>
-                        <span className="font-medium text-gray-900">Share insights</span> - Collaborate with colleagues
-                        by sharing valuable data products.
+                        <span className="font-medium text-gray-900">Monitor deployment</span> - Track the progress of
+                        your deployment in real-time.
                       </li>
                     </ol>
 
@@ -285,6 +293,221 @@ export default function DocumentationPage() {
                         <FileText className="h-4 w-4" />
                         Submit Feedback
                       </Button>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* Resources Tab */}
+            <TabsContent value="resources">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="md:col-span-2 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold mb-4">Resource Types</h2>
+                    <p className="text-gray-600 mb-6">
+                      Our platform supports deployment of various Azure resources. Below are the main categories of
+                      resources you can deploy.
+                    </p>
+
+                    <div className="space-y-6">
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="flex items-center gap-2">
+                            <Database className="h-5 w-5 text-primary" />
+                            Fabric Resources
+                          </CardTitle>
+                          <CardDescription>Microsoft Fabric analytics resources for your data platform</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="space-y-4">
+                            <div>
+                              <h4 className="font-medium mb-2">Available Resources</h4>
+                              <ul className="grid grid-cols-2 gap-2 text-sm">
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">Workspaces</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">Lakehouses</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">Warehouses</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">KQL Databases</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">Semantic Models</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">Pipelines</Badge>
+                                </li>
+                              </ul>
+                            </div>
+
+                            <Button asChild>
+                              <Link href="/deploy-azure-resources?type=fabric">Deploy Fabric Resources</Link>
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="flex items-center gap-2">
+                            <Server className="h-5 w-5 text-primary" />
+                            Azure Resources
+                          </CardTitle>
+                          <CardDescription>General Azure resources for your cloud infrastructure</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="space-y-4">
+                            <div>
+                              <h4 className="font-medium mb-2">Available Resources</h4>
+                              <ul className="grid grid-cols-2 gap-2 text-sm">
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">Virtual Machines</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">Storage Accounts</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">Virtual Networks</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">App Services</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">SQL Databases</Badge>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                  <Badge variant="outline">Key Vaults</Badge>
+                                </li>
+                              </ul>
+                            </div>
+
+                            <Button asChild>
+                              <Link href="/deploy-azure-resources?type=azure">Deploy Azure Resources</Link>
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2 className="text-2xl font-bold mb-4">Resource Templates</h2>
+                    <p className="text-gray-600 mb-6">
+                      Get started quickly with our pre-configured templates for common deployment scenarios.
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <Card>
+                        <CardHeader className="pb-2">
+                          <CardTitle className="text-lg">Data Analytics Platform</CardTitle>
+                          <CardDescription>Complete Fabric analytics environment</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Deploy a comprehensive data analytics platform with workspaces, lakehouses, and warehouses.
+                          </p>
+                          <div className="flex justify-between">
+                            <Badge variant="outline" className="flex items-center gap-1">
+                              <FileCode2 className="h-3 w-3" />
+                              Terraform
+                            </Badge>
+                            <Button size="sm">Use Template</Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card>
+                        <CardHeader className="pb-2">
+                          <CardTitle className="text-lg">Web Application Stack</CardTitle>
+                          <CardDescription>Full web application infrastructure</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Deploy a complete web application stack with App Service, SQL Database, and Storage Account.
+                          </p>
+                          <div className="flex justify-between">
+                            <Badge variant="outline" className="flex items-center gap-1">
+                              <Braces className="h-3 w-3" />
+                              Bicep
+                            </Badge>
+                            <Button size="sm">Use Template</Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-lg">Featured Videos</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <div className="relative aspect-video rounded-md overflow-hidden">
+                          <Image
+                            src="/placeholder.svg?height=200&width=320&text=Fabric+Deployment+Tutorial"
+                            alt="Fabric Deployment Tutorial"
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="bg-black/60 rounded-full p-3">
+                              <PlayCircle className="h-8 w-8 text-white" />
+                            </div>
+                          </div>
+                        </div>
+                        <h4 className="font-medium">Fabric Deployment Tutorial</h4>
+                        <p className="text-xs text-gray-600">Learn how to deploy Fabric resources</p>
+                      </div>
+
+                      <Button variant="outline" className="w-full" asChild>
+                        <a
+                          href="https://www.youtube.com/@MicrosoftISD"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
+                        >
+                          <Youtube className="h-4 w-4" />
+                          View More Videos
+                          <ExternalLink className="h-3 w-3 ml-1" />
+                        </a>
+                      </Button>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-lg">Resource Documentation</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="border-b pb-3">
+                        <h4 className="font-medium mb-1">Fabric Workspaces</h4>
+                        <p className="text-xs text-gray-600">Documentation for Fabric workspace deployment</p>
+                        <Button variant="link" size="sm" className="p-0 h-auto mt-1">
+                          Read More
+                        </Button>
+                      </div>
+                      <div className="border-b pb-3">
+                        <h4 className="font-medium mb-1">Azure Virtual Networks</h4>
+                        <p className="text-xs text-gray-600">Documentation for virtual network deployment</p>
+                        <Button variant="link" size="sm" className="p-0 h-auto mt-1">
+                          Read More
+                        </Button>
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-1">Storage Accounts</h4>
+                        <p className="text-xs text-gray-600">Documentation for storage account deployment</p>
+                        <Button variant="link" size="sm" className="p-0 h-auto mt-1">
+                          Read More
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
