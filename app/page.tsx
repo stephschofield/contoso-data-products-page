@@ -12,6 +12,11 @@ import { DiscoverFilters } from "@/components/discover/discover-filters"
 import { DiscoverProducts } from "@/components/discover/discover-products"
 import { DiscoverCategories } from "@/components/discover/discover-categories"
 import { DiscoverPopular } from "@/components/discover/discover-popular"
+import { HeroSection } from "@/components/hero-section"
+import { FeaturesSection } from "@/components/features-section"
+import { FeaturedDatasets } from "@/components/featured-datasets"
+import { PopularProducts } from "@/components/popular-products"
+import { CTASection } from "@/components/cta-section"
 
 // We can't directly import Segoe UI as it's not available in Google Fonts
 // Instead, we'll use a system font fallback
@@ -63,40 +68,44 @@ export default function RootLayout({
       </head>
       <body className={inter.variable}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <SessionProvider>
-            {children ? (
-              children
-            ) : (
-              <div className="flex flex-col min-h-screen bg-gray-50">
-                <Header />
-
-                <main className="flex-1">
-                  <DiscoverHeader />
-
-                  <div className="container px-4 py-8 md:py-12">
-                    <DiscoverCategories />
-
-                    <div className="mt-12">
-                      <DiscoverPopular />
-                    </div>
-
-                    <div className="mt-12">
-                      <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-2xl font-bold">All Data Products</h2>
-                        <DiscoverFilters />
-                      </div>
-
-                      <DiscoverProducts />
-                    </div>
-                  </div>
-                </main>
-
-                <Footer />
-              </div>
-            )}
-          </SessionProvider>
+          <SessionProvider>{children ? children : <HomePage />}</SessionProvider>
         </ThemeProvider>
       </body>
     </html>
+  )
+}
+
+function HomePage() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-1">
+        <HeroSection />
+        <FeaturesSection />
+        <FeaturedDatasets />
+        <PopularProducts />
+        <CTASection />
+
+        <DiscoverHeader />
+
+        <div className="container px-4 py-8 md:py-12">
+          <DiscoverCategories />
+
+          <div className="mt-12">
+            <DiscoverPopular />
+          </div>
+
+          <div className="mt-12">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold">All Data Products</h2>
+              <DiscoverFilters />
+            </div>
+
+            <DiscoverProducts />
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
   )
 }

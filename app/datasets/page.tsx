@@ -4,7 +4,6 @@ import { DatasetsHeader } from "@/components/datasets/datasets-header"
 import { DatasetsList } from "@/components/datasets/datasets-list"
 import { DatasetFilters } from "@/components/datasets/dataset-filters"
 import { DatasetTypes } from "@/components/datasets/dataset-types"
-import { PurviewExplorer } from "@/components/purview/purview-explorer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Plus, Search } from "lucide-react"
@@ -63,11 +62,6 @@ export default function DatasetsPage() {
             <div className="mt-8">
               <h2 className="text-xl font-bold mb-4">Featured Datasets</h2>
               <DatasetsList />
-            </div>
-
-            <div className="mt-12">
-              <h2 className="text-xl font-bold mb-4">Purview Data Catalog</h2>
-              <PurviewExplorer />
             </div>
           </div>
         </main>

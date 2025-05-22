@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Code2, Cog, GitCompare, Layers, Shield, Zap } from "lucide-react"
+import { BarChart3, Database, FileSearch, Lock, Share2, Users } from "lucide-react"
 
 export function FeaturesSection() {
   return (
@@ -9,79 +9,74 @@ export function FeaturesSection() {
           <div className="space-y-2">
             <div className="inline-block rounded-lg bg-contoso-orange px-3 py-1 text-sm text-white">Features</div>
             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-              Everything You Need for Fabric Deployment
+              Comprehensive Data Discovery Platform
             </h2>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Our platform provides a seamless experience for deploying your Fabric platform with either Terraform or
-              Bicep.
+              Our platform provides everything you need to find, understand, and use university data resources.
             </p>
           </div>
         </div>
         <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <GitCompare className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Multiple IaC Options</CardTitle>
+              <Database className="h-6 w-6 text-contoso-orange" />
+              <CardTitle>Rich Data Catalog</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Deploy using either Terraform or Bicep based on your team's expertise and preference.
+                Browse our comprehensive catalog of datasets across multiple domains and formats.
               </CardDescription>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <Zap className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Fast Deployment</CardTitle>
+              <FileSearch className="h-6 w-6 text-contoso-orange" />
+              <CardTitle>Advanced Search</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Quickly deploy your Fabric platform with our optimized deployment process.
+                Find exactly what you need with our powerful search and filtering capabilities.
               </CardDescription>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <Shield className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Secure by Default</CardTitle>
+              <Lock className="h-6 w-6 text-contoso-orange" />
+              <CardTitle>Secure Access</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                All deployments follow security best practices and compliance requirements.
+                Request access to restricted datasets with our streamlined approval process.
               </CardDescription>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <Cog className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Customizable</CardTitle>
+              <BarChart3 className="h-6 w-6 text-contoso-orange" />
+              <CardTitle>Data Products</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>Access ready-to-use data products with visualizations and insights.</CardDescription>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center gap-2">
+              <Share2 className="h-6 w-6 text-contoso-orange" />
+              <CardTitle>Data Sharing</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>
-                Tailor your deployment to meet your specific requirements and configurations.
+                Easily share datasets and insights with colleagues and research partners.
               </CardDescription>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center gap-2">
-              <Code2 className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Infrastructure as Code</CardTitle>
+              <Users className="h-6 w-6 text-contoso-orange" />
+              <CardTitle>Collaboration</CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription>
-                Manage your infrastructure with code, enabling version control and repeatability.
-              </CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-2">
-              <Layers className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Multi-Environment</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Deploy to development, staging, and production environments with consistent configurations.
-              </CardDescription>
+              <CardDescription>Work together on data projects with integrated collaboration tools.</CardDescription>
             </CardContent>
           </Card>
         </div>
