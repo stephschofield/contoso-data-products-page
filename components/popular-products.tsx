@@ -1,13 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 
 export function PopularProducts() {
   const products = [
     {
       id: "student-success",
       title: "Student Success Dashboard",
-      description: "Interactive dashboard for tracking student performance metrics and identifying at-risk students.",
+      description: "Track student performance and identify at-risk students",
       image: "/images/student-success-dashboard.png",
       fallbackImage: "/placeholder.svg?key=e6bi8",
       restricted: false,
@@ -15,7 +14,7 @@ export function PopularProducts() {
     {
       id: "enrollment-analytics",
       title: "Enrollment Analytics",
-      description: "Comprehensive analytics on enrollment trends, demographics, and program popularity.",
+      description: "Analyze enrollment trends and demographics",
       image: "/images/enrollment-analytics.jpeg",
       fallbackImage: "/placeholder.svg?key=n9hgf",
       restricted: true,
@@ -23,7 +22,7 @@ export function PopularProducts() {
     {
       id: "campus-resource",
       title: "Campus Resource Utilization",
-      description: "Visualizations of campus resource usage patterns to optimize space allocation.",
+      description: "Optimize space allocation and resource usage",
       image: "/images/campus-resource-utilization.jpeg",
       fallbackImage: "/placeholder.svg?key=7dfbb",
       restricted: false,
@@ -44,43 +43,14 @@ export function PopularProducts() {
 
         <div className="grid gap-6 mt-8 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
-            <div key={product.id} className="group relative overflow-hidden rounded-lg border">
-              <Link href={`/discover/product/${product.id}`} className="absolute inset-0 z-10">
-                <span className="sr-only">View {product.title}</span>
-              </Link>
-              <div className="relative aspect-video overflow-hidden">
-                <Image
-                  src={product.image || product.fallbackImage}
-                  alt={product.title}
-                  fill
-                  className="object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0 p-4 flex flex-col justify-end">
-                  <h3 className="font-bold text-lg text-white">{product.title}</h3>
-                  <p className="text-sm text-white/80">{product.description}</p>
+            <div key={product.id} className="group relative overflow-hidden rounded-lg">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image src={product.image || product.fallbackImage} alt={product.title} fill className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
+                  <div className="absolute bottom-0 p-4">
+                    <h3 className="font-bold text-lg text-white">{product.title}</h3>
+                  </div>
                 </div>
-              </div>
-              <div className="p-4 flex justify-between items-center">
-                <div className="text-sm">
-                  {product.restricted ? (
-                    <span className="text-amber-600 font-medium">Restricted Access</span>
-                  ) : (
-                    <span className="text-green-600 font-medium">Public Access</span>
-                  )}
-                </div>
-                <Button
-                  asChild
-                  size="sm"
-                  className={
-                    product.restricted
-                      ? "bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 hover:text-amber-800"
-                      : "bg-contoso-blue hover:bg-contoso-blue/90"
-                  }
-                >
-                  <Link href={`/discover/product/${product.id}`}>
-                    {product.restricted ? "Request Now" : "Access Now"}
-                  </Link>
-                </Button>
               </div>
             </div>
           ))}

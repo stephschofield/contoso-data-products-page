@@ -51,24 +51,22 @@ export function DiscoverProducts() {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => (
-        <div key={product.id} className="group relative overflow-hidden rounded-lg border">
-          <Link href={`/discover/product/${product.id}`} className="absolute inset-0 z-10">
-            <span className="sr-only">View {product.title}</span>
-          </Link>
-          <div className="relative aspect-video overflow-hidden">
+        <div key={product.id} className="group relative overflow-hidden rounded-lg">
+          <div className="relative aspect-[4/3] overflow-hidden">
             <Image
               src={product.image || `/placeholder.svg?height=300&width=300&text=${encodeURIComponent(product.title)}`}
               alt={product.title}
-              width={600}
-              height={400}
-              className="object-cover transition-transform group-hover:scale-105"
+              fill
+              className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0 p-4 flex flex-col justify-end">
-              <h3 className="font-bold text-lg text-white">{product.title}</h3>
-              <p className="text-sm text-white/80">{product.description}</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
+              <div className="absolute bottom-0 p-4">
+                <h3 className="font-bold text-lg text-white">{product.title}</h3>
+                <p className="text-sm text-white/90 mt-1">{product.description}</p>
+              </div>
             </div>
           </div>
-          <div className="p-4 flex justify-between items-center">
+          <div className="p-2 flex justify-between items-center">
             <div className="text-sm">
               {product.restricted ? (
                 <span className="text-amber-600 font-medium">Restricted Access</span>
@@ -82,10 +80,10 @@ export function DiscoverProducts() {
               className={
                 product.restricted
                   ? "bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 hover:text-amber-800"
-                  : "bg-contoso-blue hover:bg-contoso-blue/90"
+                  : "bg-blue-500 hover:bg-blue-600 text-white"
               }
             >
-              <Link href={`/discover/product/${product.id}`}>{product.restricted ? "Request Now" : "Access Now"}</Link>
+              <Link href={`/discover/product/${product.id}`}>{product.restricted ? "Request" : "Access"}</Link>
             </Button>
           </div>
         </div>
