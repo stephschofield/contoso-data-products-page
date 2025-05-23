@@ -1,12 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 export function PopularProducts() {
   const products = [
     {
       id: "student-success",
       title: "Student Success Dashboard",
-      description: "Track student performance and identify at-risk students",
+      description: "Interactive dashboard for tracking student performance metrics and identifying at-risk students.",
       image: "/images/student-success-dashboard.png",
       fallbackImage: "/placeholder.svg?key=e6bi8",
       restricted: false,
@@ -14,7 +16,7 @@ export function PopularProducts() {
     {
       id: "enrollment-analytics",
       title: "Enrollment Analytics",
-      description: "Analyze enrollment trends and demographics",
+      description: "Comprehensive analytics on enrollment trends, demographics, and program popularity.",
       image: "/images/enrollment-analytics.jpeg",
       fallbackImage: "/placeholder.svg?key=n9hgf",
       restricted: true,
@@ -22,7 +24,7 @@ export function PopularProducts() {
     {
       id: "campus-resource",
       title: "Campus Resource Utilization",
-      description: "Optimize space allocation and resource usage",
+      description: "Visualizations of campus resource usage patterns to optimize space allocation.",
       image: "/images/campus-resource-utilization.jpeg",
       fallbackImage: "/placeholder.svg?key=7dfbb",
       restricted: false,
@@ -43,16 +45,29 @@ export function PopularProducts() {
 
         <div className="grid gap-6 mt-8 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
-            <div key={product.id} className="group relative overflow-hidden rounded-lg">
-              <div className="relative aspect-[4/3] overflow-hidden">
+            <Card key={product.id} className="overflow-hidden flex flex-col">
+              <div className="aspect-video relative">
                 <Image src={product.image || product.fallbackImage} alt={product.title} fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
-                  <div className="absolute bottom-0 p-4">
-                    <h3 className="font-bold text-lg text-white">{product.title}</h3>
-                  </div>
-                </div>
               </div>
-            </div>
+              <CardContent className="p-4 flex-grow">
+                <h3 className="text-lg font-bold">{product.title}</h3>
+                <p className="text-sm text-muted-foreground mt-2">{product.description}</p>
+              </CardContent>
+              <CardFooter className="p-4 border-t">
+                <Button
+                  asChild
+                  className={
+                    product.restricted
+                      ? "w-full bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 hover:text-amber-800"
+                      : "w-full bg-contoso-blue hover:bg-contoso-blue/90"
+                  }
+                >
+                  <Link href={`/discover/product/${product.id}`}>
+                    {product.restricted ? "Request Now" : "Access Now"}
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
           ))}
         </div>
 
