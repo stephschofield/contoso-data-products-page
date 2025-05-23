@@ -78,7 +78,7 @@ For more information, refer to the [Microsoft Entra ID documentation](https://le
 
 Finally, let's update the root layout to include the SessionProvider:
 
-```typescriptreact file="app/layout.tsx"
+\`\`\`typescriptreact file="app/layout.tsx"
 [v0-no-op-code-block-prefix]import type React from "react"
 import type { Metadata } from "next"
 import { SessionProvider } from "@/components/session-provider"
