@@ -12,11 +12,6 @@ import { DiscoverFilters } from "@/components/discover/discover-filters"
 import { DiscoverProducts } from "@/components/discover/discover-products"
 import { DiscoverCategories } from "@/components/discover/discover-categories"
 import { DiscoverPopular } from "@/components/discover/discover-popular"
-import { HeroSection } from "@/components/hero-section"
-import { FeaturesSection } from "@/components/features-section"
-import { FeaturedDatasets } from "@/components/featured-datasets"
-import { PopularProducts } from "@/components/popular-products"
-import { CTASection } from "@/components/cta-section"
 
 // We can't directly import Segoe UI as it's not available in Google Fonts
 // Instead, we'll use a system font fallback
@@ -77,15 +72,10 @@ export default function RootLayout({
 
 function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Header />
-      <main className="flex-1">
-        <HeroSection />
-        <FeaturesSection />
-        <FeaturedDatasets />
-        <PopularProducts />
-        <CTASection />
 
+      <main className="flex-1">
         <DiscoverHeader />
 
         <div className="container px-4 py-8 md:py-12">
@@ -105,6 +95,7 @@ function HomePage() {
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   )
