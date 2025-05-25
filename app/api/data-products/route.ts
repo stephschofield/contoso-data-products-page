@@ -5,18 +5,40 @@ import { purviewServiceDelegated } from "@/lib/purview-service-delegated"
 
 export async function GET(request: NextRequest) {
   try {
+    console.log("API: Starting data products fetch...")
+
     // Get the user's session and access token
     const session = await getServerSession(authOptions)
+    console.log("API: Session status:", !!session)
 
     if (!session?.accessToken) {
+      console.log("API: No access token found")
       return NextResponse.json({ error: "Authentication required" }, { status: 401 })
     }
 
-    // Initialize Purview service if not already done
-    if (!process.env.PURVIEW_ACCOUNT_NAME) {
-      return NextResponse.json({ error: "Purview configuration missing" }, { status: 500 })
+    // Check environment variables
+    const requiredEnvVars = {
+      PURVIEW_ACCOUNT_NAME: process.env.PURVIEW_ACCOUNT_NAME,
+      AZURE_AD_TENANT_ID: process.env.AZURE_AD_TENANT_ID,
+      AZURE_AD_CLIENT_ID: process.env.AZURE_AD_CLIENT_ID,
+      AZURE_AD_CLIENT_SECRET: process.env.AZURE_AD_CLIENT_SECRET,
     }
 
+    const missingVars = Object.entries(requiredEnvVars)
+      .filter(([key, value]) => !value)
+      .map(([key]) => key)
+
+    if (missingVars.length > 0) {
+      console.error("API: Missing environment variables:", missingVars)
+      return NextResponse.json(
+        {
+          error: `Missing environment variables: ${missingVars.join(", ")}`,
+        },
+        { status: 500 },
+      )
+    }
+
+    console.log("API: Initializing Purview service...")
     purviewServiceDelegated.initialize({
       accountName: process.env.PURVIEW_ACCOUNT_NAME!,
       tenantId: process.env.AZURE_AD_TENANT_ID!,
@@ -27,6 +49,7 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
     const query = searchParams.get("search")
 
+    console.log("API: Calling Purview service...")
     let dataProducts
     if (query) {
       dataProducts = await purviewServiceDelegated.searchDataProducts(session.accessToken, query)
@@ -34,35 +57,16 @@ export async function GET(request: NextRequest) {
       dataProducts = await purviewServiceDelegated.getDataProducts(session.accessToken)
     }
 
+    console.log("API: Retrieved", dataProducts.length, "data products")
     return NextResponse.json(dataProducts)
   } catch (error) {
-    console.error("Error fetching data products:", error)
-    return NextResponse.json({ error: "Failed to fetch data products" }, { status: 500 })
-  }
-}
-
-export async function POST(request: NextRequest) {
-  try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.accessToken) {
-      return NextResponse.json({ error: "Authentication required" }, { status: 401 })
-    }
-
-    const dataProduct = await request.json()
-
-    purviewServiceDelegated.initialize({
-      accountName: process.env.PURVIEW_ACCOUNT_NAME!,
-      tenantId: process.env.AZURE_AD_TENANT_ID!,
-      clientId: process.env.AZURE_AD_CLIENT_ID!,
-      clientSecret: process.env.AZURE_AD_CLIENT_SECRET!,
-    })
-
-    const id = await purviewServiceDelegated.createDataProduct(session.accessToken, dataProduct)
-
-    return NextResponse.json({ id }, { status: 201 })
-  } catch (error) {
-    console.error("Error creating data product:", error)
-    return NextResponse.json({ error: "Failed to create data product" }, { status: 500 })
+    console.error("API: Error fetching data products:", error)
+    return NextResponse.json(
+      {
+        error: "Failed to fetch data products",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
+    )
   }
 }
