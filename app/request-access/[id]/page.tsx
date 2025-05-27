@@ -33,13 +33,66 @@ export default function RequestAccessPage({ params }: { params: { id: string } }
     }
   }, [status])
 
-  // Mock data - in a real app, you would fetch this based on the productId
+  // Product data mapping - matches the products from discover and popular sections
+  const getProductData = (id: number) => {
+    const products = {
+      1: {
+        id: 1,
+        title: "Student Success Dashboard",
+        description: "Interactive dashboard for tracking student performance metrics and identifying at-risk students",
+        department: "Academic Affairs",
+        image: "/images/student-success.jpeg",
+      },
+      2: {
+        id: 2,
+        title: "Enrollment Analytics",
+        description: "Comprehensive analytics on student enrollment patterns and trends across departments",
+        department: "Student Services",
+        image: "/images/enrollment-analytics.jpeg",
+      },
+      3: {
+        id: 3,
+        title: "Campus Resource Utilization",
+        description: "Real-time insights into campus facility usage, classroom occupancy, and resource allocation",
+        department: "Facilities Management",
+        image: "/images/campus-resource-utilization.jpeg",
+      },
+      4: {
+        id: 4,
+        title: "Course Enrollment Patterns",
+        description: "Analysis of enrollment trends, popular courses, and scheduling optimization",
+        department: "Academic Affairs",
+        image: "/images/course-enrollment.jpeg",
+      },
+      5: {
+        id: 5,
+        title: "Alumni Career Outcomes",
+        description: "Employment statistics, career paths, and success metrics for graduates",
+        department: "Career Services",
+        image: "/images/alumni-careers.jpeg",
+      },
+      6: {
+        id: 6,
+        title: "Library Resource Usage",
+        description: "Statistics on library visits, resource checkouts, and digital access",
+        department: "University Libraries",
+        image: "/images/library-resource-usage.jpeg",
+      },
+    }
+
+    return (
+      products[id as keyof typeof products] || {
+        id: id,
+        title: "Unknown Product",
+        description: "Product details not available",
+        department: "Unknown Department",
+        image: "/placeholder.svg?height=300&width=300&text=No+Image",
+      }
+    )
+  }
+
   const product = {
-    id: productId,
-    title: productId === 4 ? "Course Enrollment Patterns" : "Unknown Product",
-    description: "Analysis of enrollment trends, popular courses, and scheduling optimization",
-    department: "Academic Affairs",
-    image: "/images/course-enrollment.jpeg",
+    ...getProductData(productId),
     accessLevels: [
       { id: "view", name: "View Only", description: "Access to view dashboards and reports" },
       { id: "download", name: "Download Data", description: "Ability to export and download data" },
