@@ -30,8 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>Discover University Data</title>
-        {/* Add a style tag to ensure Segoe UI is used */}
-        <style jsx global>{`
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
           html {
             font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
           }
@@ -60,7 +61,9 @@ export default function RootLayout({
           .group-hover\\:text-contoso-blue\\/90 {
             color: rgba(1, 166, 240, 0.9);
           }
-        `}</style>
+          `,
+          }}
+        />
       </head>
       <body className={inter.variable}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
