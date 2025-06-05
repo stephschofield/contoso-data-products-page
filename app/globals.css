@@ -72,7 +72,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
 
@@ -83,4 +83,50 @@
   --chart-3: 42 100% 50%; /* Selective Yellow (#FFBA01) */
   --chart-4: 196 99% 47%; /* Vivid Cerulean (#01A6F0) */
   --chart-5: 210 40% 98%;
+}
+
+/* Add Contoso blue color for discover page */
+.bg-contoso-blue {
+  background-color: #01a6f0;
+}
+
+.text-contoso-blue {
+  color: #01a6f0;
+}
+
+.hover\:bg-contoso-blue\/90:hover {
+  background-color: rgba(1, 166, 240, 0.9);
+}
+
+.hover\:text-contoso-blue:hover {
+  color: #01a6f0;
+}
+
+.hover\:border-contoso-blue:hover {
+  border-color: #01a6f0;
+}
+
+.group-hover\:text-contoso-blue\/90 {
+  color: rgba(1, 166, 240, 0.9);
+}
+
+/* Contoso brand colors */
+.bg-contoso-orange {
+  background-color: #f34f1c;
+}
+
+.text-contoso-orange {
+  color: #f34f1c;
+}
+
+.hover\:bg-contoso-orange\/90:hover {
+  background-color: rgba(243, 79, 28, 0.9);
+}
+
+.hover\:text-contoso-orange:hover {
+  color: #f34f1c;
+}
+
+.text-contoso-yellow {
+  color: #ffba01;
 }
