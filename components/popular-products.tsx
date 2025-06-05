@@ -58,7 +58,8 @@ export function PopularProducts() {
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Popular Data Products</h2>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Discover our most requested dashboards and analytics tools
+              Discover our most requested dashboards and analytics tools, helping teams collaborate on data-driven
+              decisions
             </p>
           </div>
         </div>
