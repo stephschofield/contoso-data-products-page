@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -47,10 +48,16 @@ const nextConfig = {
       );
     }
     
+    // Ignore specific modules that cause issues
+    config.externals = config.externals || [];
+    if (isServer) {
+      config.externals.push('@azure/msal-node');
+    }
+    
     return config;
   },
   experimental: {
-    serverComponentsExternalPackages: ['@azure/msal-node']
+    serverComponentsExternalPackages: ['@azure/msal-node'],
   }
 };
 

@@ -1,13 +1,19 @@
 import type React from "react"
 import type { Metadata } from "next"
-import "./globals.css"
 import { Inter } from "next/font/google"
+import { SessionProvider } from "@/components/session-provider"
+import { ThemeProvider } from "@/components/theme-provider"
+import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
+  title: "Discover University Data",
+  description: "Find, explore, and access university data products and datasets",
   generator: "v0.dev",
 }
 
@@ -17,8 +23,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={inter.variable}>
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <SessionProvider>{children}</SessionProvider>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
