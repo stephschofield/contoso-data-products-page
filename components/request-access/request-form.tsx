@@ -6,243 +6,177 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { AlertCircle, CheckCircle } from "lucide-react"
+import { AlertTriangle } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
-interface RequestFormProps {
-  productId: number
+interface RequestAccessFormProps {
+  product: {
+    id: number
+    title: string
+    accessLevels: {
+      id: string
+      name: string
+      description: string
+    }[]
+    requiredApprovals: string[]
+  }
+  onSubmit: (formData: any) => void
+  isSubmitting: boolean
 }
 
-export function RequestForm({ productId }: RequestFormProps) {
-  const [formStep, setFormStep] = useState(1)
-  const [formSubmitted, setFormSubmitted] = useState(false)
-  const [accessType, setAccessType] = useState("view")
-  const [agreeTerms, setAgreeTerms] = useState(false)
+export function RequestAccessForm({ product, onSubmit, isSubmitting }: RequestAccessFormProps) {
+  const [formData, setFormData] = useState({
+    accessLevel: product.accessLevels[0].id,
+    purpose: "",
+    timeframe: "semester",
+    agreesToTerms: false,
+  })
+
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  const handleInputChange = (field: string, value: any) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
+
+    // Clear error when field is updated
+    if (errors[field]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev }
+        delete newErrors[field]
+        return newErrors
+      })
+    }
+  }
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+
+    if (!formData.purpose.trim()) {
+      newErrors.purpose = "Please provide a purpose for your request"
+    }
+
+    if (!formData.agreesToTerms) {
+      newErrors.agreesToTerms = "You must agree to the terms of use"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setFormSubmitted(true)
-    // In a real app, you would submit the form data to an API
+
+    if (validateForm()) {
+      onSubmit({
+        productId: product.id,
+        ...formData,
+      })
+    }
   }
 
-  if (formSubmitted) {
-    return (
+  return (
+    <form onSubmit={handleSubmit}>
       <Card className="shadow-md">
         <CardHeader>
-          <CardTitle>Request Submitted</CardTitle>
-          <CardDescription>Your access request has been submitted successfully.</CardDescription>
+          <CardTitle>Request Access to {product.title}</CardTitle>
+          <CardDescription>
+            Please provide the following information to request access to this data product.
+          </CardDescription>
         </CardHeader>
-        <CardContent>
-          <Alert className="bg-green-50 border-green-200">
-            <CheckCircle className="h-4 w-4 text-green-600" />
-            <AlertTitle className="text-green-800">Success</AlertTitle>
-            <AlertDescription className="text-green-700">
-              Your request for access to this data product has been received. You will be notified when your request has
-              been reviewed.
+        <CardContent className="space-y-6">
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="access-level" className="text-base">
+                Access Level
+              </Label>
+              <RadioGroup
+                id="access-level"
+                value={formData.accessLevel}
+                onValueChange={(value) => handleInputChange("accessLevel", value)}
+                className="mt-2 space-y-3"
+              >
+                {product.accessLevels.map((level) => (
+                  <div key={level.id} className="flex items-start space-x-2">
+                    <RadioGroupItem value={level.id} id={`level-${level.id}`} className="mt-1" />
+                    <div>
+                      <Label htmlFor={`level-${level.id}`} className="font-medium">
+                        {level.name}
+                      </Label>
+                      <p className="text-sm text-muted-foreground">{level.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </RadioGroup>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="purpose" className="text-base">
+                Purpose of Request
+              </Label>
+              <Textarea
+                id="purpose"
+                placeholder="Please describe why you need access to this data product and how you plan to use it..."
+                className="min-h-[120px]"
+                value={formData.purpose}
+                onChange={(e) => handleInputChange("purpose", e.target.value)}
+              />
+              {errors.purpose && <p className="text-sm text-red-500">{errors.purpose}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="timeframe" className="text-base">
+                Access Duration
+              </Label>
+              <Select value={formData.timeframe} onValueChange={(value) => handleInputChange("timeframe", value)}>
+                <SelectTrigger id="timeframe">
+                  <SelectValue placeholder="Select duration" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="semester">Current Semester</SelectItem>
+                  <SelectItem value="academic-year">Academic Year</SelectItem>
+                  <SelectItem value="permanent">Permanent Access</SelectItem>
+                  <SelectItem value="custom">Custom Duration</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <Alert variant="destructive" className="bg-yellow-50 text-yellow-800 border-yellow-200">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Important Information</AlertTitle>
+            <AlertDescription>
+              This data product contains sensitive information about course enrollments and student academic patterns.
+              Misuse of this data may result in disciplinary action.
             </AlertDescription>
           </Alert>
 
-          <div className="mt-4 rounded-lg border p-4 bg-muted/50">
-            <h3 className="font-medium mb-2">Request Details</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Request ID:</span>
-                <span className="font-medium">
-                  REQ-{productId}-{Math.floor(Math.random() * 10000)}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Submitted on:</span>
-                <span className="font-medium">{new Date().toLocaleDateString()}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Estimated response time:</span>
-                <span className="font-medium">2-3 business days</span>
-              </div>
+          <div className="flex items-start space-x-2">
+            <Checkbox
+              id="terms"
+              checked={formData.agreesToTerms}
+              onCheckedChange={(checked) => handleInputChange("agreesToTerms", checked === true)}
+            />
+            <div>
+              <Label htmlFor="terms" className="font-medium text-sm">
+                I agree to the terms of use for this data product
+              </Label>
+              <p className="text-sm text-muted-foreground">
+                I understand that I am responsible for maintaining the confidentiality of this data and will only use it
+                for the stated purpose.
+              </p>
+              {errors.agreesToTerms && <p className="text-sm text-red-500">{errors.agreesToTerms}</p>}
             </div>
           </div>
         </CardContent>
         <CardFooter>
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={() => (window.location.href = `/request-status/${productId}`)}
-          >
-            View Request Status
+          <Button type="submit" className="w-full bg-[#9e1b32] hover:bg-[#7a1522]" disabled={isSubmitting}>
+            {isSubmitting ? "Submitting Request..." : "Submit Access Request"}
           </Button>
         </CardFooter>
       </Card>
-    )
-  }
-
-  return (
-    <Card className="shadow-md">
-      <form onSubmit={handleSubmit}>
-        <CardHeader>
-          <CardTitle>Request Access</CardTitle>
-          <CardDescription>Complete this form to request access to this data product.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {formStep === 1 && (
-            <>
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="access-type">Access Type</Label>
-                  <RadioGroup
-                    defaultValue={accessType}
-                    className="grid grid-cols-3 gap-4 mt-2"
-                    onValueChange={setAccessType}
-                  >
-                    <div>
-                      <RadioGroupItem value="view" id="view" className="peer sr-only" />
-                      <Label
-                        htmlFor="view"
-                        className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                      >
-                        <span className="text-sm font-medium">View Only</span>
-                      </Label>
-                    </div>
-                    <div>
-                      <RadioGroupItem value="download" id="download" className="peer sr-only" />
-                      <Label
-                        htmlFor="download"
-                        className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                      >
-                        <span className="text-sm font-medium">Download</span>
-                      </Label>
-                    </div>
-                    <div>
-                      <RadioGroupItem value="api" id="api" className="peer sr-only" />
-                      <Label
-                        htmlFor="api"
-                        className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                      >
-                        <span className="text-sm font-medium">API Access</span>
-                      </Label>
-                    </div>
-                  </RadioGroup>
-                </div>
-
-                <div>
-                  <Label htmlFor="purpose">Purpose</Label>
-                  <Select required>
-                    <SelectTrigger id="purpose">
-                      <SelectValue placeholder="Select purpose" />
-                    </SelectTrigger>
-                    <SelectContent position="popper">
-                      <SelectItem value="research">Academic Research</SelectItem>
-                      <SelectItem value="teaching">Teaching</SelectItem>
-                      <SelectItem value="administrative">Administrative</SelectItem>
-                      <SelectItem value="student-project">Student Project</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <Label htmlFor="project-description">Project Description</Label>
-                  <Textarea
-                    id="project-description"
-                    placeholder="Please describe how you plan to use this data..."
-                    className="min-h-[100px]"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="time-period">Access Duration</Label>
-                  <Select required>
-                    <SelectTrigger id="time-period">
-                      <SelectValue placeholder="Select time period" />
-                    </SelectTrigger>
-                    <SelectContent position="popper">
-                      <SelectItem value="1-month">1 Month</SelectItem>
-                      <SelectItem value="3-months">3 Months</SelectItem>
-                      <SelectItem value="6-months">6 Months</SelectItem>
-                      <SelectItem value="1-year">1 Year</SelectItem>
-                      <SelectItem value="permanent">Permanent</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              <Alert variant="destructive" className="bg-yellow-50 border-yellow-200 text-yellow-800">
-                <AlertCircle className="h-4 w-4 text-yellow-600" />
-                <AlertTitle className="text-yellow-800">Important</AlertTitle>
-                <AlertDescription className="text-yellow-700">
-                  Access to this data product requires approval from the data steward. Please ensure your request
-                  includes all necessary information.
-                </AlertDescription>
-              </Alert>
-            </>
-          )}
-
-          {formStep === 2 && (
-            <>
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="department">Department</Label>
-                  <Input id="department" placeholder="Your department" required />
-                </div>
-
-                <div>
-                  <Label htmlFor="supervisor">Supervisor/Advisor</Label>
-                  <Input id="supervisor" placeholder="Name of your supervisor or advisor" required />
-                </div>
-
-                <div>
-                  <Label htmlFor="supervisor-email">Supervisor Email</Label>
-                  <Input id="supervisor-email" type="email" placeholder="Supervisor's email address" required />
-                </div>
-
-                <div className="flex items-start space-x-2 pt-2">
-                  <Checkbox
-                    id="agree-terms"
-                    checked={agreeTerms}
-                    onCheckedChange={(checked) => setAgreeTerms(checked === true)}
-                  />
-                  <div className="grid gap-1.5 leading-none">
-                    <Label
-                      htmlFor="agree-terms"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      I agree to the terms of use
-                    </Label>
-                    <p className="text-sm text-muted-foreground">
-                      I understand that I am responsible for using this data in accordance with university policies and
-                      applicable regulations.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          {formStep === 2 ? (
-            <>
-              <Button type="button" variant="outline" onClick={() => setFormStep(1)}>
-                Previous
-              </Button>
-              <Button type="submit" disabled={!agreeTerms}>
-                Submit Request
-              </Button>
-            </>
-          ) : (
-            <>
-              <div></div>
-              <Button type="button" onClick={() => setFormStep(2)}>
-                Next
-              </Button>
-            </>
-          )}
-        </CardFooter>
-      </form>
-    </Card>
+    </form>
   )
 }
