@@ -19,7 +19,7 @@ const nextConfig = {
     ],
     unoptimized: true,
   },
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, webpack }) => {
     // Handle Node.js specific modules for client-side
     if (!isServer) {
       config.resolve.fallback = {
@@ -27,20 +27,20 @@ const nextConfig = {
         fs: false,
         net: false,
         tls: false,
-        crypto: require.resolve('crypto-browserify'),
-        stream: require.resolve('stream-browserify'),
-        path: require.resolve('path-browserify'),
-        zlib: require.resolve('browserify-zlib'),
-        http: require.resolve('stream-http'),
-        https: require.resolve('https-browserify'),
-        os: require.resolve('os-browserify/browser'),
-        buffer: require.resolve('buffer/'),
-        constants: require.resolve('constants-browserify'),
+        crypto: 'crypto-browserify',
+        stream: 'stream-browserify',
+        path: 'path-browserify',
+        zlib: 'browserify-zlib',
+        http: 'stream-http',
+        https: 'https-browserify',
+        os: 'os-browserify/browser',
+        buffer: 'buffer',
+        constants: 'constants-browserify',
       };
       
       // Add buffer polyfill
       config.plugins.push(
-        new config.webpack.ProvidePlugin({
+        new webpack.ProvidePlugin({
           Buffer: ['buffer', 'Buffer'],
           process: 'process/browser',
         })
