@@ -68,7 +68,7 @@ export default function RootLayout({
       <body className={inter.variable}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <SessionProvider>
-            <HomePage />
+            <Home />
           </SessionProvider>
         </ThemeProvider>
       </body>
@@ -76,9 +76,9 @@ export default function RootLayout({
   )
 }
 
-function HomePage() {
+function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
       <Header />
       <main className="flex-1">
         <HeroSection />
@@ -88,6 +88,6 @@ function HomePage() {
         <CTASection />
       </main>
       <Footer />
-    </div>
+    </>
   )
 }
