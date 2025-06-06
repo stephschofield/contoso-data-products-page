@@ -5,9 +5,9 @@ import Link from "next/link"
 export function HeroSection() {
   return (
     <section className="w-full min-h-[80vh] bg-gradient-to-b from-white to-gray-50">
-      <div className="w-full max-w-none px-0">
-        <div className="grid gap-0 lg:grid-cols-2 min-h-[80vh]">
-          <div className="flex flex-col justify-center space-y-6 px-8 md:px-12 lg:px-16 xl:px-20">
+      <div className="w-full max-w-7xl mx-auto px-4">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] min-h-[80vh] items-center">
+          <div className="flex flex-col justify-center space-y-6 px-4 md:px-8">
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-6xl xl:text-7xl/none">
                 Discover and Access University Data
@@ -31,15 +31,15 @@ export function HeroSection() {
               </Button>
             </div>
           </div>
-          <div className="flex items-center justify-center lg:justify-end">
-            <div className="w-full h-full relative min-h-[500px] lg:min-h-[80vh]">
+          <div className="flex items-center justify-center">
+            <div className="w-full max-w-[800px] h-[500px] lg:h-[600px] relative rounded-lg overflow-hidden shadow-2xl">
               <Image
                 src="/images/university-data-analysis-main-page.jpg"
                 fill
                 alt="University data analysis presentation"
                 className="object-cover"
                 priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 800px"
               />
             </div>
           </div>
