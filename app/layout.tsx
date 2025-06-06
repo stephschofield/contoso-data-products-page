@@ -1,14 +1,16 @@
 import type React from "react"
-import "@/app/globals.css"
-import { Inter } from "next/font/google"
-import { SessionProvider } from "@/components/session-provider"
 import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
+import { SessionProvider } from "@/components/session-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Contoso Data Products",
-  description: "Discover and access university data products and datasets",
+  title: "University Data Discovery Platform",
+  description: "Discover and access university datasets and data products",
     generator: 'v0.dev'
 }
 
@@ -21,7 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider>
-          <div className="flex min-h-screen flex-col">{children}</div>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
         </SessionProvider>
       </body>
     </html>
