@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { FileSpreadsheet, Database, Code, ExternalLink, Filter, Download, RefreshCw } from "lucide-react"
+import { FileSpreadsheet, Database, Code, ExternalLink, Filter, Download, RefreshCw, Lock, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
@@ -9,9 +9,6 @@ interface ProductContentProps {
 }
 
 export function ProductContent({ productId }: ProductContentProps) {
-  // Determine which PowerBI dashboard to show based on product ID
-  const dashboardImage = productId === 4 ? "/images/powerbi-course-enrollment.jpeg" : "/images/powerbi-thumbnail.jpeg"
-
   return (
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
       <div className="p-6 border-b border-gray-200">
@@ -66,30 +63,52 @@ export function ProductContent({ productId }: ProductContentProps) {
                 </div>
               </div>
 
-              {/* PowerBI Dashboard Content */}
-              <div className="relative h-[500px] bg-white">
-                <Image
-                  src={dashboardImage || "/placeholder.svg"}
-                  alt="PowerBI Dashboard"
-                  fill
-                  className="object-contain"
-                />
-
-                {/* Overlay for restricted access */}
-                {productId === 4 && (
-                  <div className="absolute inset-0 bg-black/5 flex items-center justify-center">
-                    <div className="bg-white/90 p-6 rounded-lg shadow-lg max-w-md text-center">
-                      <h3 className="text-lg font-semibold mb-2">Restricted Dashboard</h3>
-                      <p className="text-gray-600 mb-4">
-                        This interactive dashboard requires access permissions. Request access to view and interact with
-                        the full dashboard.
-                      </p>
-                      <Button className="bg-contoso-blue hover:bg-contoso-blue/90 text-white">
-                        Request Dashboard Access
-                      </Button>
+              {/* PowerBI Dashboard Content - Request Access Visual */}
+              <div className="relative h-[500px] bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                <div className="text-center max-w-md mx-auto p-8">
+                  <div className="mb-6">
+                    <div className="relative mx-auto w-24 h-24 mb-4">
+                      <div className="absolute inset-0 bg-contoso-blue/10 rounded-full"></div>
+                      <div className="absolute inset-2 bg-contoso-blue/20 rounded-full"></div>
+                      <div className="absolute inset-4 bg-contoso-blue rounded-full flex items-center justify-center">
+                        <Lock className="h-8 w-8 text-white" />
+                      </div>
                     </div>
                   </div>
-                )}
+
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-3">Request Access to See Dashboard</h3>
+
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    This interactive Power BI dashboard contains sensitive university data. Request access to view
+                    detailed analytics and insights.
+                  </p>
+
+                  <div className="space-y-3">
+                    <Button className="bg-contoso-blue hover:bg-contoso-blue/90 text-white w-full">
+                      <Eye className="h-4 w-4 mr-2" />
+                      Request Dashboard Access
+                    </Button>
+
+                    <p className="text-sm text-gray-500">Access typically granted within 1-2 business days</p>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span>Secure Access</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span>Real-time Data</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                        <span>Interactive</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
