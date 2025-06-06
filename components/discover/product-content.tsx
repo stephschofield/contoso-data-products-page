@@ -19,7 +19,7 @@ export function ProductContent({ productId }: ProductContentProps) {
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
       <div className="p-6 border-b border-gray-200">
         <h2 className="text-xl font-semibold">Data Product Contents</h2>
-        <p className="text-gray-600 mt-1">Explore what&apos;s included in this data product</p>
+        <p className="text-gray-600 mt-1">Explore what's included in this data product</p>
       </div>
 
       <Tabs defaultValue="dashboard">

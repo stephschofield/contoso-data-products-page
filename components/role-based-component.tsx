@@ -3,23 +3,31 @@
 import { useSession } from "next-auth/react"
 import type { ReactNode } from "react"
 
-interface RoleBasedComponentProps {
+interface RoleBasedProps {
   allowedRoles: string[]
   children: ReactNode
   fallback?: ReactNode
 }
 
-export function RoleBasedComponent({ allowedRoles, children, fallback = null }: RoleBasedComponentProps) {
-  const { data: session } = useSession()
+export function RoleGuard({ allowedRoles, children, fallback = null }: RoleBasedProps) {
+  const { data: session, status } = useSession()
 
-  if (!session) {
-    return <>{fallback}</>
+  // Loading state
+  if (status === "loading") {
+    return <div>Loading...</div>
   }
 
-  const userRole = (session.user as any)?.role || "user"
+  // Not authenticated
+  if (status !== "authenticated") {
+    return fallback
+  }
 
-  if (!allowedRoles.includes(userRole)) {
-    return <>{fallback}</>
+  // Check if user has any of the allowed roles
+  const userRoles = session?.user?.roles || []
+  const hasAllowedRole = allowedRoles.some((role) => userRoles.includes(role))
+
+  if (!hasAllowedRole) {
+    return fallback
   }
 
   return <>{children}</>

@@ -1,117 +1,111 @@
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Star, Users, Clock, ArrowRight, Lock } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 export function PopularProducts() {
   const products = [
     {
-      id: 1,
-      title: "Student Demographics Dashboard",
-      description:
-        "Interactive dashboard showing student population breakdown by demographics, enrollment status, and trends.",
-      image: "/images/student-demographics.jpeg",
-      rating: 4.8,
-      users: 1543,
-      lastUpdated: "2 days ago",
-      access: "restricted",
-      department: "Institutional Research",
+      id: "student-success",
+      title: "Student Success Dashboard",
+      description: "Interactive dashboard for tracking student performance metrics and identifying at-risk students.",
+      image: "/images/student-success.jpeg",
+      badges: [
+        { text: "Dashboard", variant: "blue" },
+        { text: "Popular", variant: "green" },
+      ],
+      restricted: true,
     },
     {
-      id: 4,
-      title: "Course Enrollment Analytics",
-      description:
-        "Comprehensive analysis of course enrollment patterns, capacity utilization, and scheduling optimization.",
-      image: "/images/course-enrollment.jpeg",
-      rating: 4.6,
-      users: 987,
-      lastUpdated: "1 week ago",
-      access: "restricted",
-      department: "Academic Affairs",
+      id: "enrollment-analytics",
+      title: "Enrollment Analytics",
+      description: "Comprehensive analytics on student enrollment patterns and trends across departments.",
+      image: "/images/enrollment-analytics.jpeg",
+      badges: [
+        { text: "Analytics", variant: "purple" },
+        { text: "Trending", variant: "orange" },
+      ],
+      restricted: false,
     },
     {
-      id: 5,
-      title: "Alumni Career Outcomes",
-      description: "Track graduate employment rates, career paths, and success metrics across different programs.",
-      image: "/images/alumni-careers.jpeg",
-      rating: 4.7,
-      users: 654,
-      lastUpdated: "3 days ago",
-      access: "public",
-      department: "Career Services",
+      id: "campus-resource",
+      title: "Campus Resource Utilization",
+      description: "Real-time insights into campus facility usage, classroom occupancy, and resource allocation.",
+      image: "/images/campus-resource-utilization.jpeg",
+      badges: [
+        { text: "Reports", variant: "green" },
+        { text: "Real-time", variant: "blue" },
+      ],
+      restricted: true,
     },
   ]
 
+  const getBadgeClasses = (variant: string) => {
+    const variants = {
+      blue: "bg-blue-50 text-blue-700 hover:bg-blue-50",
+      green: "bg-green-50 text-green-700 hover:bg-green-50",
+      purple: "bg-purple-50 text-purple-700 hover:bg-purple-50",
+      orange: "bg-orange-50 text-orange-700 hover:bg-orange-50",
+    }
+    return variants[variant as keyof typeof variants] || variants.blue
+  }
+
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Popular Data Products</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover the most used data products that provide valuable insights for university operations and research.
-          </p>
+    <section className="w-full py-12 md:py-24 bg-gray-50">
+      <div className="container px-4 md:px-6">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+          <div className="space-y-2">
+            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Popular Data Products</h2>
+            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              Discover our most requested dashboards and analytics tools
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
-            >
-              <div className="relative h-48">
+        <div className="grid gap-6 mt-8 md:grid-cols-2 lg:grid-cols-3">
+          {products.map((product, index) => (
+            <Card key={product.id} className="overflow-hidden">
+              <div className="aspect-video relative bg-muted">
                 <Image src={product.image || "/placeholder.svg"} alt={product.title} fill className="object-cover" />
-                {product.access === "restricted" && (
-                  <div className="absolute top-4 right-4">
-                    <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
-                      <Lock className="h-3 w-3 mr-1" />
-                      Restricted
+              </div>
+              <CardHeader className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  {product.badges.map((badge, badgeIndex) => (
+                    <Badge key={badgeIndex} variant="outline" className={getBadgeClasses(badge.variant)}>
+                      {badge.text}
                     </Badge>
-                  </div>
-                )}
-              </div>
-
-              <div className="p-6">
-                <div className="mb-2">
-                  <Badge variant="secondary">{product.department}</Badge>
+                  ))}
                 </div>
-
-                <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
-                <p className="text-gray-600 mb-4">{product.description}</p>
-
-                <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
-                  <div className="flex items-center">
-                    <Star className="h-4 w-4 text-yellow-500 mr-1" />
-                    <span className="font-medium">{product.rating}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Users className="h-4 w-4 mr-1" />
-                    {product.users} users
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="h-4 w-4 mr-1" />
-                    {product.lastUpdated}
-                  </div>
-                </div>
-
-                <Button className="w-full" variant="outline" asChild>
-                  <Link href={`/discover/product/${product.id}`}>
-                    View Product
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
+                <CardTitle className="text-lg">{product.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="p-4 pt-0">
+                <p className="text-sm text-muted-foreground">{product.description}</p>
+              </CardContent>
+              <CardFooter className="p-4 border-t">
+                <Link href={`/discover/product/${index + 1}`} className="w-full">
+                  <Button
+                    className={
+                      product.restricted
+                        ? "w-full bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 hover:text-amber-800"
+                        : "w-full bg-cyan-500 hover:bg-cyan-600 text-white"
+                    }
+                  >
+                    {product.restricted ? "Request Access" : "Access Now"}
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
           ))}
         </div>
 
-        <div className="text-center">
-          <Button size="lg" className="bg-contoso-blue hover:bg-contoso-blue/90 text-white" asChild>
-            <Link href="/discover">
-              Explore All Products
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+        <div className="flex justify-center mt-8">
+          <Link
+            href="/data-products"
+            className="inline-flex items-center justify-center rounded-md bg-contoso-orange px-6 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-contoso-orange/90 focus-visible:outline-none focus-visible:ring-1"
+          >
+            View All Data Products
+          </Link>
         </div>
       </div>
     </section>
