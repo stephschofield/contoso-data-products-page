@@ -88,8 +88,6 @@ export function ProductContent({ productId }: ProductContentProps) {
                       <Eye className="h-4 w-4 mr-2" />
                       Request Dashboard Access
                     </Button>
-
-                    <p className="text-sm text-gray-500">Access typically granted within 1-2 business days</p>
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-gray-200">
