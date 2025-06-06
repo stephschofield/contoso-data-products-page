@@ -21,7 +21,6 @@ const nextConfig = {
     unoptimized: true,
   },
   webpack: (config, { isServer, webpack }) => {
-    // Handle Node.js specific modules for client-side
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -39,19 +38,12 @@ const nextConfig = {
         constants: 'constants-browserify',
       };
       
-      // Add buffer polyfill
       config.plugins.push(
         new webpack.ProvidePlugin({
           Buffer: ['buffer', 'Buffer'],
           process: 'process/browser',
         })
       );
-    }
-    
-    // Ignore specific modules that cause issues
-    config.externals = config.externals || [];
-    if (isServer) {
-      config.externals.push('@azure/msal-node');
     }
     
     return config;
