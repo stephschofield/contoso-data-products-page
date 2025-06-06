@@ -67,9 +67,7 @@ export default function RootLayout({
       </head>
       <body className={inter.variable}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <SessionProvider>
-            <HomePage />
-          </SessionProvider>
+          <SessionProvider>{children ? children : <HomePage />}</SessionProvider>
         </ThemeProvider>
       </body>
     </html>
