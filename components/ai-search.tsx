@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { Search, X, Loader2, MessageSquare, Database, BarChart2, ExternalLink, Building } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -324,3 +323,6 @@ export function AISearch() {
     </div>
   )
 }
+
+// Also provide a default export for compatibility
+export default AISearch
