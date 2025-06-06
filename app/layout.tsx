@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Cloud Fabric Deployment - University of Contoso",
+  title: "Explore University Data Products - University of Contoso",
   description: "Deploy Fabric Platform with Ease",
   generator: "v0.dev",
 }
