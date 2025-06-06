@@ -17,7 +17,7 @@ export function DatasetsList() {
       downloads: 16,
       isPrivate: true,
       isRestricted: true,
-      image: "/placeholder.svg?height=200&width=300&text=Intellectual+Engagement",
+      image: "/images/student-demographics.jpeg",
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ export function DatasetsList() {
       downloads: 18,
       isPrivate: false,
       isRestricted: false,
-      image: "/placeholder.svg?height=200&width=300&text=Career+Readiness",
+      image: "/images/alumni-careers.jpeg",
     },
     {
       id: 3,
@@ -47,7 +47,7 @@ export function DatasetsList() {
       downloads: 15,
       isPrivate: true,
       isRestricted: true,
-      image: "/placeholder.svg?height=200&width=300&text=Academic+Success",
+      image: "/images/student-success.jpeg",
     },
     {
       id: 4,
@@ -62,7 +62,7 @@ export function DatasetsList() {
       downloads: 9,
       isPrivate: false,
       isRestricted: false,
-      image: "/placeholder.svg?height=200&width=300&text=Chatbots+Impact",
+      image: "/images/course-enrollment.jpeg",
     },
     {
       id: 5,
@@ -77,7 +77,7 @@ export function DatasetsList() {
       downloads: 23,
       isPrivate: false,
       isRestricted: true,
-      image: "/placeholder.svg?height=200&width=300&text=Student+Enrollment",
+      image: "/images/enrollment-analytics.jpeg",
     },
     {
       id: 6,
@@ -92,7 +92,7 @@ export function DatasetsList() {
       downloads: 7,
       isPrivate: true,
       isRestricted: true,
-      image: "/placeholder.svg?height=200&width=300&text=Campus+Resources",
+      image: "/images/campus-resource-utilization.jpeg",
     },
     {
       id: 7,
@@ -107,7 +107,7 @@ export function DatasetsList() {
       downloads: 31,
       isPrivate: false,
       isRestricted: false,
-      image: "/placeholder.svg?height=200&width=300&text=Faculty+Research",
+      image: "/images/powerbi-thumbnail.jpeg",
     },
     {
       id: 8,
@@ -122,7 +122,7 @@ export function DatasetsList() {
       downloads: 14,
       isPrivate: true,
       isRestricted: true,
-      image: "/placeholder.svg?height=200&width=300&text=Library+Usage",
+      image: "/images/library-resource-usage.jpeg",
     },
   ]
 

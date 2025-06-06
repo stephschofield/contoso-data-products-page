@@ -10,10 +10,7 @@ interface ProductContentProps {
 
 export function ProductContent({ productId }: ProductContentProps) {
   // Determine which PowerBI dashboard to show based on product ID
-  const dashboardImage =
-    productId === 4
-      ? "/images/powerbi-course-enrollment.jpeg"
-      : "/placeholder.svg?height=400&width=800&text=Dashboard+Preview"
+  const dashboardImage = productId === 4 ? "/images/powerbi-course-enrollment.jpeg" : "/images/powerbi-thumbnail.jpeg"
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
@@ -155,7 +152,7 @@ export function ProductContent({ productId }: ProductContentProps) {
                 <div className="border border-gray-200 rounded-lg overflow-hidden group cursor-pointer hover:shadow-md transition-shadow">
                   <div className="relative h-40">
                     <Image
-                      src="/images/powerbi-thumbnail.jpeg"
+                      src="/images/enrollment-analytics.jpeg"
                       alt="Enrollment Trends Dashboard"
                       fill
                       className="object-cover"
@@ -171,7 +168,7 @@ export function ProductContent({ productId }: ProductContentProps) {
                 <div className="border border-gray-200 rounded-lg overflow-hidden group cursor-pointer hover:shadow-md transition-shadow">
                   <div className="relative h-40">
                     <Image
-                      src="/images/powerbi-course-enrollment.jpeg"
+                      src="/images/course-enrollment.jpeg"
                       alt="Course Analytics Dashboard"
                       fill
                       className="object-cover"
@@ -187,7 +184,7 @@ export function ProductContent({ productId }: ProductContentProps) {
                 <div className="border border-gray-200 rounded-lg overflow-hidden group cursor-pointer hover:shadow-md transition-shadow">
                   <div className="relative h-40">
                     <Image
-                      src="/placeholder.svg?height=200&width=300&text=Capacity+Planning"
+                      src="/images/campus-resource-utilization.jpeg"
                       alt="Capacity Planning Dashboard"
                       fill
                       className="object-cover"
