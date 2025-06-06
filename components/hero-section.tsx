@@ -32,14 +32,14 @@ export function HeroSection() {
             </div>
           </div>
           <div className="flex items-center justify-center">
-            <div className="w-full max-w-[800px] h-[500px] lg:h-[600px] relative rounded-lg overflow-hidden shadow-2xl">
+            <div className="w-full h-full relative min-h-[500px] lg:min-h-[80vh]">
               <Image
                 src="/images/university-data-analysis-main-page.jpg"
                 fill
                 alt="University data analysis presentation"
                 className="object-cover"
                 priority
-                sizes="(max-width: 1024px) 100vw, 800px"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </div>
