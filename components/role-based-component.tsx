@@ -19,7 +19,7 @@ export function RoleGuard({ allowedRoles, children, fallback = null }: RoleBased
 
   // Not authenticated
   if (status !== "authenticated") {
-    return fallback
+    return <>{fallback}</>
   }
 
   // Check if user has any of the allowed roles
@@ -27,7 +27,7 @@ export function RoleGuard({ allowedRoles, children, fallback = null }: RoleBased
   const hasAllowedRole = allowedRoles.some((role) => userRoles.includes(role))
 
   if (!hasAllowedRole) {
-    return fallback
+    return <>{fallback}</>
   }
 
   return <>{children}</>
