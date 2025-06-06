@@ -6,7 +6,7 @@ export function HeroSection() {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-b from-white to-gray-50">
       <div className="container px-4 md:px-6">
-        <div className="grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_700px]">
+        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
@@ -33,12 +33,11 @@ export function HeroSection() {
           </div>
           <div className="flex items-center justify-center">
             <Image
-              src="/images/university-data-analysis-main-page.jpg"
-              width={700}
-              height={467}
-              alt="Data analyst presenting insights to colleagues"
-              className="rounded-lg object-cover shadow-xl w-full h-auto max-w-none"
-              priority
+              src="/data-visualization-dashboard.png"
+              width={550}
+              height={550}
+              alt="Data Discovery Dashboard"
+              className="rounded-lg object-cover shadow-xl"
             />
           </div>
         </div>
