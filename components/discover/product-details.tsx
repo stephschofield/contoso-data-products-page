@@ -166,8 +166,8 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                 When using this data in reports or presentations, please include the following attribution:
                 <br />
                 <span className="italic">
-                  "Source: University of Arkansas Office of Institutional Research, Student Demographics Analysis, v
-                  {details.version}"
+                  &quot;Source: University of Arkansas Office of Institutional Research, Student Demographics Analysis,
+                  v{details.version}&quot;
                 </span>
               </p>
             </div>
