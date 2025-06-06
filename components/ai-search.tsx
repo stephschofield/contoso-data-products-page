@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
-import { Search, X, Loader2, MessageSquare, Database, BarChart2, ExternalLink, Building } from "lucide-react"
+import { Search, X, Loader2, MessageSquare, Database, BarChart2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
@@ -12,25 +12,13 @@ import Image from "next/image"
 import Link from "next/link"
 
 interface SearchResult {
-  id: number | string
+  id: number
   title: string
   type: "product" | "dataset" | "answer"
   description: string
   image?: string
   link?: string
   tags?: string[]
-  source?: "curated" | "purview"
-  typeName?: string
-  qualifiedName?: string
-}
-
-interface SearchResponse {
-  aiResponse: string
-  results: SearchResult[]
-  sources?: {
-    curated: number
-    purview: number
-  }
 }
 
 export function AISearch() {
@@ -39,7 +27,6 @@ export function AISearch() {
   const [isSearching, setIsSearching] = useState(false)
   const [results, setResults] = useState<SearchResult[]>([])
   const [aiResponse, setAIResponse] = useState("")
-  const [sources, setSources] = useState<{ curated: number; purview: number }>({ curated: 0, purview: 0 })
   const [error, setError] = useState("")
   const searchRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -71,7 +58,6 @@ export function AISearch() {
     setIsSearching(true)
     setResults([])
     setAIResponse("")
-    setSources({ curated: 0, purview: 0 })
     setError("")
 
     try {
@@ -87,10 +73,9 @@ export function AISearch() {
         throw new Error("Search request failed")
       }
 
-      const data: SearchResponse = await response.json()
+      const data = await response.json()
       setAIResponse(data.aiResponse)
       setResults(data.results)
-      setSources(data.sources || { curated: 0, purview: 0 })
     } catch (err) {
       console.error("Search error:", err)
       setError("Failed to perform search. Please try again.")
@@ -109,36 +94,10 @@ export function AISearch() {
     setQuery("")
     setResults([])
     setAIResponse("")
-    setSources({ curated: 0, purview: 0 })
     setError("")
     if (inputRef.current) {
       inputRef.current.focus()
     }
-  }
-
-  const getResultIcon = (result: SearchResult) => {
-    if (result.source === "purview") {
-      return <Building className="h-6 w-6 text-purple-600" />
-    }
-    if (result.type === "dataset") {
-      return <Database className="h-6 w-6 text-blue-600" />
-    }
-    return <BarChart2 className="h-6 w-6 text-green-600" />
-  }
-
-  const getSourceBadge = (result: SearchResult) => {
-    if (result.source === "purview") {
-      return (
-        <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
-          Purview
-        </Badge>
-      )
-    }
-    return (
-      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-        Curated
-      </Badge>
-    )
   }
 
   return (
@@ -176,8 +135,8 @@ export function AISearch() {
               <MessageSquare className="h-12 w-12 mx-auto text-gray-300 mb-3" />
               <h3 className="text-lg font-medium mb-1">AI-Powered Search</h3>
               <p className="text-gray-500 max-w-md mx-auto">
-                Ask questions in natural language to find data products, analyze trends, or get insights about your data
-                from both curated products and Purview catalog.
+                Ask questions in natural language to find data products, analyze trends, or get insights about your
+                data.
               </p>
               <div className="mt-4 space-y-2">
                 <p className="text-sm text-gray-500">Try asking:</p>
@@ -211,7 +170,7 @@ export function AISearch() {
           {isSearching && (
             <div className="py-12 text-center">
               <Loader2 className="h-8 w-8 mx-auto text-gray-400 animate-spin mb-4" />
-              <p className="text-gray-500">Searching with AI across all data sources...</p>
+              <p className="text-gray-500">Searching with AI...</p>
             </div>
           )}
 
@@ -250,18 +209,12 @@ export function AISearch() {
               )}
 
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-medium text-gray-500">Search Results</h3>
-                  <div className="flex gap-2 text-xs">
-                    {sources.curated > 0 && <span className="text-blue-600">{sources.curated} curated</span>}
-                    {sources.purview > 0 && <span className="text-purple-600">{sources.purview} from Purview</span>}
-                  </div>
-                </div>
+                <h3 className="text-sm font-medium text-gray-500 mb-3">Search Results</h3>
                 <div className="space-y-4">
                   {results.map((result) => (
                     <Link
                       href={result.link || "#"}
-                      key={`${result.source}-${result.id}`}
+                      key={`${result.type}-${result.id}`}
                       className="flex gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                       onClick={() => setIsOpen(false)}
                     >
@@ -276,42 +229,30 @@ export function AISearch() {
                         </div>
                       ) : (
                         <div className="flex-shrink-0 w-16 h-16 rounded bg-gray-100 flex items-center justify-center">
-                          {getResultIcon(result)}
+                          {result.type === "dataset" ? (
+                            <Database className="h-6 w-6 text-gray-400" />
+                          ) : (
+                            <BarChart2 className="h-6 w-6 text-gray-400" />
+                          )}
                         </div>
                       )}
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
+                      <div>
+                        <div className="flex items-center gap-2">
                           <h4 className="font-medium">{result.title}</h4>
-                          {getSourceBadge(result)}
                           <Badge variant="outline" className="text-xs">
-                            {result.source === "purview"
-                              ? result.typeName?.split(".").pop() || "Asset"
-                              : result.type === "product"
-                                ? "Data Product"
-                                : "Dataset"}
+                            {result.type === "product" ? "Data Product" : "Dataset"}
                           </Badge>
                         </div>
                         <p className="text-sm text-gray-600 mt-1">{result.description}</p>
-                        {result.source === "purview" && result.qualifiedName && (
-                          <p className="text-xs text-gray-500 mt-1 truncate">{result.qualifiedName}</p>
-                        )}
                         {result.tags && (
                           <div className="flex gap-1 mt-2 flex-wrap">
-                            {result.tags.slice(0, 3).map((tag) => (
+                            {result.tags.map((tag) => (
                               <Badge key={tag} variant="secondary" className="text-xs bg-gray-100">
                                 {tag}
                               </Badge>
                             ))}
-                            {result.tags.length > 3 && (
-                              <Badge variant="secondary" className="text-xs bg-gray-100">
-                                +{result.tags.length - 3} more
-                              </Badge>
-                            )}
                           </div>
                         )}
-                      </div>
-                      <div className="flex-shrink-0 flex items-center">
-                        <ExternalLink className="h-4 w-4 text-gray-400" />
                       </div>
                     </Link>
                   ))}

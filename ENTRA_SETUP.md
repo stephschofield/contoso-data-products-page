@@ -13,7 +13,7 @@ This document provides instructions for setting up Microsoft Entra ID (formerly 
 2. Navigate to **Microsoft Entra ID** > **App registrations**
 3. Click **New registration**
 4. Enter the following information:
-   - **Name**: Discover University Data
+   - **Name**: Cloud Fabric Deployment
    - **Supported account types**: Accounts in this organizational directory only (Single tenant)
    - **Redirect URI**: Web > http://localhost:3000/api/auth/callback/azure-ad
 5. Click **Register**
@@ -74,3 +74,29 @@ Before deploying to production:
 - **Error: AADSTS65001**: Ensure the user has consent to use the application.
 
 For more information, refer to the [Microsoft Entra ID documentation](https://learn.microsoft.com/en-us/entra/identity-platform/).
+\`\`\`
+
+Finally, let's update the root layout to include the SessionProvider:
+
+\`\`\`typescriptreact file="app/layout.tsx"
+[v0-no-op-code-block-prefix]import type React from "react"
+import type { Metadata } from "next"
+import { SessionProvider } from "@/components/session-provider"
+import RootLayout from "./page"
+
+export const metadata: Metadata = {
+  title: "Cloud Fabric Deployment - University of Contoso",
+  description: "Deploy Fabric Platform with Ease",
+}
+
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <SessionProvider>
+      <RootLayout>{children}</RootLayout>
+    </SessionProvider>
+  )
+}

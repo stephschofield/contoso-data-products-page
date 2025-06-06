@@ -33,7 +33,7 @@ export default function SignIn() {
           </div>
           <CardTitle className="text-2xl font-bold">Sign in</CardTitle>
           <CardDescription>
-            Sign in with your Microsoft Entra ID account to access the university data discovery platform
+            Sign in with your Microsoft Entra ID account to access the Cloud Fabric Deployment platform
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

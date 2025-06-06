@@ -43,9 +43,6 @@ export function Header() {
           <Link href="/" className="text-sm font-medium text-gray-700 hover:text-contoso-orange">
             Discover
           </Link>
-          <Link href="/catalog" className="text-sm font-medium text-gray-700 hover:text-contoso-orange">
-            Data Catalog
-          </Link>
           <Link href="/documentation" className="text-sm font-medium text-gray-700 hover:text-contoso-orange">
             Documentation
           </Link>

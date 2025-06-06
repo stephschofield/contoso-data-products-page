@@ -12,8 +12,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Discover University Data",
-  description: "Find, explore, and access university data products and datasets",
+  title: "Cloud Fabric Deployment - University of Contoso",
+  description: "Deploy Fabric Platform with Ease",
   generator: "v0.dev",
 }
 
