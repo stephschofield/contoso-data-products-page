@@ -1,33 +1,26 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import { SessionProvider } from "@/components/session-provider"
-import { ThemeProvider } from "@/components/theme-provider"
+import RootLayout from "./page"
 import "./globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
 
 export const metadata: Metadata = {
   title: "Cloud Fabric Deployment - University of Contoso",
   description: "Deploy Fabric Platform with Ease",
-  generator: "v0.dev",
+    generator: 'v0.dev'
 }
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <body>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <SessionProvider>{children}</SessionProvider>
-        </ThemeProvider>
+        <SessionProvider>
+          <RootLayout>{children}</RootLayout>
+        </SessionProvider>
       </body>
     </html>
   )
