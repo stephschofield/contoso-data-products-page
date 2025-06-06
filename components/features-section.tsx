@@ -1,84 +1,62 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BarChart3, Database, FileSearch, Lock, Share2, Users } from "lucide-react"
+import { Shield, Users, Zap, Globe, Lock, BarChart } from "lucide-react"
 
 export function FeaturesSection() {
+  const features = [
+    {
+      icon: Shield,
+      title: "Secure & Compliant",
+      description: "Enterprise-grade security with FERPA compliance and role-based access controls.",
+    },
+    {
+      icon: Users,
+      title: "Collaborative Platform",
+      description: "Share insights and collaborate with colleagues across departments and colleges.",
+    },
+    {
+      icon: Zap,
+      title: "Real-time Analytics",
+      description: "Access up-to-date data with automated refresh cycles and live dashboards.",
+    },
+    {
+      icon: Globe,
+      title: "Universal Access",
+      description: "Access your data products from anywhere with our cloud-based platform.",
+    },
+    {
+      icon: Lock,
+      title: "Data Governance",
+      description: "Comprehensive data lineage tracking and governance through Microsoft Purview integration.",
+    },
+    {
+      icon: BarChart,
+      title: "Advanced Analytics",
+      description: "Powerful analytics tools and machine learning capabilities for deeper insights.",
+    },
+  ]
+
   return (
-    <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-muted/40">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-contoso-orange px-3 py-1 text-sm text-white">Features</div>
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-              Comprehensive Data Discovery Platform
-            </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Our platform provides everything you need to find, understand, and use university data resources.
-            </p>
-          </div>
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Powerful Features for Data Discovery</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Our platform provides everything you need to discover, access, and analyze university data effectively.
+          </p>
         </div>
-        <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-2">
-              <Database className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Rich Data Catalog</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Browse our comprehensive catalog of datasets across multiple domains and formats.
-              </CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-2">
-              <FileSearch className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Advanced Search</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Find exactly what you need with our powerful search and filtering capabilities.
-              </CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-2">
-              <Lock className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Secure Access</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Request access to restricted datasets with our streamlined approval process.
-              </CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-2">
-              <BarChart3 className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Data Products</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>Access ready-to-use data products with visualizations and insights.</CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-2">
-              <Share2 className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Data Sharing</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Easily share datasets and insights with colleagues and research partners.
-              </CardDescription>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center gap-2">
-              <Users className="h-6 w-6 text-contoso-orange" />
-              <CardTitle>Collaboration</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>Work together on data projects with integrated collaboration tools.</CardDescription>
-            </CardContent>
-          </Card>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => {
+            const IconComponent = feature.icon
+            return (
+              <div key={index} className="p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-contoso-blue/10 rounded-lg flex items-center justify-center mb-4">
+                  <IconComponent className="h-6 w-6 text-contoso-blue" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
