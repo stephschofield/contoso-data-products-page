@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 import { generateText } from "ai"
 import { openai } from "@ai-sdk/openai"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 
 // Mock database of data products and datasets
 const dataProducts = [
@@ -86,6 +88,12 @@ const datasets = [
 ]
 
 export async function POST(request: Request) {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+
   try {
     const { query } = await request.json()
 
