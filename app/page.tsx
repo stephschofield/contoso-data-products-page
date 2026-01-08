@@ -17,10 +17,6 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       <style jsx global>{`
-        html {
-          font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
         /* Add Contoso blue color for discover page */
         .bg-contoso-blue {
           background-color: #01A6F0;
