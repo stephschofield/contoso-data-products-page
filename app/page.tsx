@@ -1,6 +1,5 @@
 "use client"
 
-import { Inter } from "next/font/google"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { DiscoverHeader } from "@/components/discover/discover-header"
@@ -14,17 +13,9 @@ import { FeaturedDatasets } from "@/components/featured-datasets"
 import { PopularProducts } from "@/components/popular-products"
 import { CTASection } from "@/components/cta-section"
 
-// We can't directly import Segoe UI as it's not available in Google Fonts
-// Instead, we'll use a system font fallback
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
-
 export default function HomePage() {
   return (
-    <div className={`flex flex-col min-h-screen ${inter.variable}`}>
+    <div className="flex flex-col min-h-screen">
       <style jsx global>{`
         html {
           font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
