@@ -10,7 +10,8 @@
   },
   "pnpm": {
     "overrides": {
-      "glob": "^10.4.6"
+      "glob": "^10.4.6",
+      "cookie": ">=0.7.0"
     }
   },
   "dependencies": {
@@ -53,7 +54,7 @@
     "embla-carousel-react": "8.5.1",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
-    "next": "15.4.11",
+    "next": "15.5.13",
     "next-auth": "latest",
     "next-themes": "^0.4.6",
     "nodemailer": "latest",
