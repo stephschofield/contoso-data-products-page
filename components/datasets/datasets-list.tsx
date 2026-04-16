@@ -126,7 +126,7 @@ export function DatasetsList() {
     },
   ]
 
-  const getTypeColor = (type) => {
+  const getTypeColor = (type: string) => {
     const colors = {
       tabular: "bg-green-100 text-green-600",
       relational: "bg-blue-100 text-blue-600",
@@ -135,10 +135,10 @@ export function DatasetsList() {
       documents: "bg-red-100 text-red-600",
       raw: "bg-gray-100 text-gray-600",
     }
-    return colors[type] || "bg-gray-100 text-gray-600"
+    return colors[type as keyof typeof colors] || "bg-gray-100 text-gray-600"
   }
 
-  const getTypeIcon = (type) => {
+  const getTypeIcon = (type: string) => {
     const icons = {
       tabular: <FileSpreadsheet className="h-3.5 w-3.5" />,
       relational: <Database className="h-3.5 w-3.5" />,
@@ -147,7 +147,7 @@ export function DatasetsList() {
       documents: <FileText className="h-3.5 w-3.5" />,
       raw: <FileCode className="h-3.5 w-3.5" />,
     }
-    return icons[type] || <Database className="h-3.5 w-3.5" />
+    return icons[type as keyof typeof icons] || <Database className="h-3.5 w-3.5" />
   }
 
   return (

@@ -11,7 +11,7 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account, profile }) {
+    async jwt({ token, account, profile }: { token: any; account: any; profile?: any }) {
       // Initial sign in
       if (account && profile) {
         // For Microsoft Entra ID, roles are typically in profile.roles or a custom claim
@@ -22,7 +22,7 @@ export const authOptions = {
       }
       return token
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: any; token: any }) {
       // Make roles available on the client
       if (session.user) {
         session.user.roles = token.roles || []
