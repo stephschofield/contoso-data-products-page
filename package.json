@@ -10,7 +10,8 @@
   },
   "pnpm": {
     "overrides": {
-      "glob": "^10.4.6"
+      "glob": "^10.4.6",
+      "postcss": "^8.5.9"
     }
   },
   "dependencies": {
